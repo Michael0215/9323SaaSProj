@@ -2,14 +2,11 @@ plugins {
     id 'com.android.application'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.comp9323_saasproj"
+        applicationId "com.unsw.SaaSProj9323"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -48,3 +45,6 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-database:16.0.1'
 //    implementation 'com.google.firebase:firebase-core:15.0.0'
 }
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'

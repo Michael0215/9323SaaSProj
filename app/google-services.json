@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:30238464205:android:d31aa588948fe8dec47184",
         "android_client_info": {
-          "package_name": "com.unsw.SaaSProj9323"
+          "package_name": "com.example.comp9323_saasproj"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "30238464205-s9nu69jttabfbjp5f7aqubchntnrnqod.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.unsw.SaaSProj9323",
+            "package_name": "com.example.comp9323_saasproj",
             "certificate_hash": "dd3fb05a6c76261d1f47e68c04f9cde2b381bb3d"
           }
         },
@@ -46,7 +46,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:30238464205:android:aa5391de1776c348c47184",
         "android_client_info": {
-          "package_name": "com.unsw.T2SaaSProj9323"
+          "package_name": "com.example.comp9323_saasproj"
         }
       },
       "oauth_client": [

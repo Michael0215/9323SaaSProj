@@ -1,8 +1,12 @@
 package com.example.comp9323_saasproj;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,10 +21,21 @@ import com.example.comp9323_saasproj.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private TextView textViewLogin;
+    private TextView textViewregister;
+    private Button buttonRegister;
+    private Button buttonLogin;
 
     private AppBarConfiguration appBarConfiguration;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
     private ActivityMainBinding binding;
 
     @Override
@@ -73,4 +88,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }

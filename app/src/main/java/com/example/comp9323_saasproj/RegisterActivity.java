@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         progressDialog = new ProgressDialog(this);
         tvStuNumber = findViewById(R.id.et_username);
         tvStuPwd = findViewById(R.id.et_password);
@@ -153,6 +154,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if(!password.trim().equals(confirm_password.trim())) {
             Toast.makeText(RegisterActivity.this,"Password input is inconsistent!",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(password.length()<=6){
+            Toast.makeText(RegisterActivity.this,"Please create a longer password more than 6 characters!",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

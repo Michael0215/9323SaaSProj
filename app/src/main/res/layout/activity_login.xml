@@ -31,14 +31,14 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextzNumber"
+        android:id="@+id/editTextEmail"
         android:layout_width="261dp"
         android:layout_height="57dp"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="532dp"
         android:ems="10"
         android:textColorHint="#000000"
-        android:hint="Enter your zID here"
+        android:hint="Enter your email here"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

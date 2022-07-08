@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseAuth=FirebaseAuth.getInstance();
-
+        progressDialog = new ProgressDialog(this);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v.getId() == R.id.buttonLogin) {
+//                    System.out.println("here1");
                     userLogin();
                 }
 
@@ -75,6 +76,8 @@ public class LoginActivity extends AppCompatActivity {
     private void userLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+//        System.out.println(email);
+//        System.out.println(password);
         if(TextUtils.isEmpty( email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
             return;
@@ -89,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         //showing the dialog
         progressDialog.setMessage("Login...");
         progressDialog.show();
+//        System.out.println("here2");
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

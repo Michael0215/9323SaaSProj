@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -25,18 +26,6 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-
-
-    private void createUserStructure(){
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        String name = "Your Name:";
-        String faculty ="Your Faculty";
-        String id = user.getUid();
-        String mailAddress = user.getEmail();
-        String course = "Your Course";
-        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
-        databaseReference.child(id).setValue(userInformation);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         Button register = findViewById(R.id.buttonRegister);
         Button cancel = findViewById(R.id.buttonCancel);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +104,8 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         System.out.println("here3");
                         if(task.isSuccessful()) {
+//                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                            updateUI(user);
                             //user is successfully reg and logged in
                             // Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                             //progressDialog.cancel();
@@ -119,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                             createUserStructure();
                             Toast.makeText(RegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
-//                            finish();
+                            finish();
                         }else{
                             Toast.makeText(RegisterActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
@@ -127,6 +122,19 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void createUserStructure(){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String name = "Your Name:";
+        String faculty ="Your Faculty";
+        String id = user.getUid();
+        String mailAddress = user.getEmail();
+        String course = "Your Course";
+        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
+        databaseReference.child(id).setValue(userInformation);
+    }
+
+
     public boolean CheckInput() {
         String username = tvStuNumber.getText().toString();
         String password = tvStuPwd.getText().toString();
@@ -149,4 +157,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return true;
     }
+
+//    private void updateUI(FirebaseUser user) {
+//
+//    }
 }

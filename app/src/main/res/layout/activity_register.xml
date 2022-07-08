@@ -18,17 +18,16 @@
         android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Please enter zID here"
-        android:textSize="25sp"
-        android:drawablePadding="8dp"
-        android:inputType="number"
-        android:maxLines="1"
         android:layout_below="@+id/tv_title"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="5dp"
+        android:drawablePadding="8dp"
+        android:hint="Please enter zID here"
+        android:maxLines="1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp" />
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_password"
@@ -36,9 +35,7 @@
         android:layout_height="50dp"
         android:hint="Please enter password here"
         android:textSize="25sp"
-
         android:drawablePadding="8dp"
-
         android:inputType="textPassword"
         android:maxLines="1"
         android:paddingLeft="10dp"

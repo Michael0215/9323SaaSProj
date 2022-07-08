@@ -50,8 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v.getId() == R.id.buttonCancel) {
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+                    finish();
                 }
             }
         });

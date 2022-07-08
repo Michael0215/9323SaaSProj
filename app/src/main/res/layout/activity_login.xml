@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:textSize="50dp"
+    android:background="@drawable/unsw">
 
     <TextView
         android:id="@+id/textViewSignUp"
-        android:layout_width="259dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="144dp"
+        android:layout_width="292dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="124dp"
         android:text="@string/don_t_have_an_account_sign_up_here"
+        android:textColor="#000000"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -20,8 +24,8 @@
         android:id="@+id/buttonLogin"
         android:layout_width="133dp"
         android:layout_height="62dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="200dp"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -30,10 +34,11 @@
         android:id="@+id/editTextzNumber"
         android:layout_width="261dp"
         android:layout_height="57dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="516dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="532dp"
         android:ems="10"
-        android:hint="Enter your z number here"
+        android:textColorHint="#000000"
+        android:hint="Enter your zID here"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -42,9 +47,10 @@
         android:id="@+id/editTextPassword"
         android:layout_width="261dp"
         android:layout_height="47dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="452dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="444dp"
         android:ems="10"
+        android:textColorHint="#000000"
         android:hint="Enter your password here"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseAuth=FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -45,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (checkInput()) {
-                userLogin();
-//                }
+                if (v.getId() == R.id.buttonLogin) {
+                    userLogin();
+                }
 
             }
         });
@@ -55,20 +54,22 @@ public class LoginActivity extends AppCompatActivity {
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                if (v.getId() == R.id.textViewSignUp) {
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-//        if(currentUser != null){
-//            reload();
-//        }
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
+    }
 
 
     private void userLogin(){
@@ -95,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         if(task.isSuccessful( )) {
                             //start the profile act
-//                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
                             // startActivities(new Intent(getApplicationContext(),Profile_act.class));
                             Toast.makeText(LoginActivity.this, "Login Successfully\n Now you can edit your information", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
@@ -112,6 +113,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-//    private
-//    private void reload() { }
+    private void reload() { }
 }

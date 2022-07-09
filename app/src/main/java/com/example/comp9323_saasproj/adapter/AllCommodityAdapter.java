@@ -1,8 +1,6 @@
 package com.example.comp9323_saasproj.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,23 +73,18 @@ public class AllCommodityAdapter extends BaseAdapter {
     //定义静态类,包含每一个item的所有元素
     static class ViewHolder {
         ImageView ivCommodity;
-        TextView tvTitle,tvType,tvDescription,tvPrice;
+        TextView tvTitle,tvType,tvDescription,tvPhone;
 
         public ViewHolder(View itemView,Commodity commodity) {
             tvTitle = itemView.findViewById(R.id.tv_name);
             tvType = itemView.findViewById(R.id.tv_type);
-            tvPrice = itemView.findViewById(R.id.tv_price);
+            tvPhone = itemView.findViewById(R.id.tv_phone);
             tvDescription = itemView.findViewById(R.id.tv_description);
             ivCommodity = itemView.findViewById(R.id.iv_commodity);
             tvTitle.setText(commodity.getTitle());//写入标题
             tvDescription.setText(commodity.getDescription());//写入内容
-            tvPrice.setText(String.valueOf(commodity.getPrice()));//写入标签
+            tvPhone.setText(commodity.getPhone());
             tvType.setText(commodity.getCategory());//详细描述
-            byte[] picture = commodity.getPicture();
-            //从字节数组中解码生成不可变的位图
-            //public static Bitmap decodeByteArray(byte[] data, int offset, int length)
-            Bitmap img = BitmapFactory.decodeByteArray(picture,0,picture.length);
-            ivCommodity.setImageBitmap(img);
         }
     }
 }

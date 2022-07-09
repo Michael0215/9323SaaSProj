@@ -50,9 +50,9 @@ import java.io.ByteArrayOutputStream;
 public class AddCommodityActivity extends AppCompatActivity {
 
     ListView lvAllCommodity;
-    TextView tvStuId;
-    ImageButton ivPhoto;
-    EditText etTitle,etPrice,etPhone,etDescription;
+//    TextView tvStuId;
+//    ImageButton ivPhoto;
+    EditText etTitle,etPhone,etDescription;
     Spinner spType;
     Button btnPublish;
 
@@ -73,8 +73,10 @@ public class AddCommodityActivity extends AppCompatActivity {
 
 
         //取出学号
-        tvStuId = findViewById(R.id.tv_student_id);
-        tvStuId.setText(this.getIntent().getStringExtra("user_id"));
+//        tvStuId = findViewById(R.id.tv_student_id);
+//        tvStuId.setText(this.getIntent().getStringExtra("user_id"));
+
+
         Button btnBack = findViewById(R.id.btn_back);
         //返回按钮点击事件
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -83,18 +85,20 @@ public class AddCommodityActivity extends AppCompatActivity {
                 finish();
             }
         });
-        ivPhoto = findViewById(R.id.iv_photo);
-        ivPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,null);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,1);
-            }
-        });
+
+
+//        ivPhoto = findViewById(R.id.iv_photo);
+//        ivPhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_PICK,null);
+//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+//                startActivityForResult(intent,1);
+//            }
+//        });
         etTitle = findViewById(R.id.et_title);
-        etPrice = findViewById(R.id.et_price);
-        etPhone = findViewById(R.id.et_phone);
+//        etPrice = findViewById(R.id.et_price);
+        etPhone = findViewById(R.id.et_email);
         etDescription = findViewById(R.id.et_description);
         spType = findViewById(R.id.spn_type);
         btnPublish = findViewById(R.id.btn_publish);
@@ -123,31 +127,24 @@ public class AddCommodityActivity extends AppCompatActivity {
 
 
                     //把图片先转化成bitmap格式
-                    BitmapDrawable drawable = (BitmapDrawable) ivPhoto.getDrawable();
-                    Bitmap bitmap = drawable.getBitmap();
+//                    BitmapDrawable drawable = (BitmapDrawable) ivPhoto.getDrawable();
+//                    Bitmap bitmap = drawable.getBitmap();
                     //二进制数组输出流
-                    ByteArrayOutputStream byStream = new ByteArrayOutputStream();
+//                    ByteArrayOutputStream byStream = new ByteArrayOutputStream();
                     //将图片压缩成质量为100的PNG格式图片
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byStream);
+//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byStream);
                     //把输出流转换为二进制数组
-                    byte[] byteArray = byStream.toByteArray();
-//                    commodity.setPicture(byteArray);
-//                    commodity.setTitle(etTitle.getText().toString());
-//                    commodity.setCategory(spType.getSelectedItem().toString());
-//                    commodity.setPrice(Float.parseFloat(etPrice.getText().toString()));
-//                    commodity.setPhone(etPhone.getText().toString());
-//                    commodity.setDescription(etDescription.getText().toString());
-//                    commodity.setStuId(tvStuId.getText().toString());
+//                    byte[] byteArray = byStream.toByteArray();
+
 
 
                     // Create a new user with a first and last name
                     Map<String, Object> user = new HashMap<>();
-                    user.put("标题", etTitle.getText().toString());
-                    user.put("类别", spType.getSelectedItem().toString());
-                    user.put("编号", Float.parseFloat(etPrice.getText().toString()));
-                    user.put("联系方式", etPhone.getText().toString());
-                    user.put("描述", etDescription.getText().toString());
-                    user.put("学生ID", tvStuId.getText().toString());
+                    user.put("Title", etTitle.getText().toString());
+                    user.put("Category", spType.getSelectedItem().toString());
+                    user.put("E-mail", etPhone.getText().toString());
+                    user.put("Description", etDescription.getText().toString());
+
 
 // Add a new document with a generated ID
                     firestoreDatabase.collection("UNSWusers")
@@ -214,22 +211,22 @@ public class AddCommodityActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            //从相册返回的数据
-            if (data != null) {
-                //得到图片的全路径
-                Uri uri = data.getData();
-                ivPhoto.setImageURI(uri);
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1) {
+//            //从相册返回的数据
+//            if (data != null) {
+//                //得到图片的全路径
+//                Uri uri = data.getData();
+//                ivPhoto.setImageURI(uri);
+//            }
+//        }
+//    }
 
     public boolean CheckInput() {
         String title = etTitle.getText().toString();
-        String price = etPrice.getText().toString();
+//        String price = etPrice.getText().toString();
         String type = spType.getSelectedItem().toString();
         String phone = etPhone.getText().toString();
         String description = etDescription.getText().toString();
@@ -237,10 +234,10 @@ public class AddCommodityActivity extends AppCompatActivity {
             Toast.makeText(this,"商品标题不能为空!",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (price.trim().equals("")) {
-            Toast.makeText(this,"商品价格不能为空!",Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        if (price.trim().equals("")) {
+//            Toast.makeText(this,"商品价格不能为空!",Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         if (type.trim().equals("请选择类别")) {
             Toast.makeText(this,"商品类别未选择!",Toast.LENGTH_SHORT).show();
             return false;

@@ -8,32 +8,16 @@ import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.FirebaseAuth;
 import com.example.comp9323_saasproj.bean.Commodity;
-import com.example.comp9323_saasproj.util.CommodityDbHelper;
 
-import android.text.TextUtils;
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.comp9323_saasproj.databinding.ActivityMainBinding;
 import com.example.comp9323_saasproj.adapter.AllCommodityAdapter;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,6 +25,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -50,10 +35,9 @@ public class MainActivity extends AppCompatActivity{
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
 //    private ActivityMainBinding binding;
-    CommodityDbHelper dbHelper;
     AllCommodityAdapter adapter;
     List<Commodity> allCommodities = new ArrayList<>();
-//    Commodity commodity = new
+
 
 
     @Override
@@ -99,12 +83,39 @@ public class MainActivity extends AppCompatActivity{
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
+                                    ArrayList<String> value = new ArrayList<>();
 
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                        Commodity commodity = new Commodity();
+
+//                                        System.out.println("id type:"+document.getId().getClass().getSimpleName());
                                         Toast.makeText(MainActivity.this, document.getId() + " => " + document.getData(), Toast.LENGTH_SHORT).show();
+                                        //set db id as commodity id
+                                        value.add((String)document.getId());
+                                        for (Map.Entry mapElement : document.getData().entrySet()){
+                                            value.add((String)mapElement.getValue().toString());
+                                        }
+//                                        value.remove(1);
+
+//                                        System.out.println(value.size());
+                                        commodity.setId(value.get(0));
+                                        commodity.setCategory(value.get(1));
+                                        commodity.setDescription(value.get(2));
+                                        commodity.setPhone(value.get(3));
+                                        commodity.setTitle(value.get(4));
+                                        allCommodities.add(commodity);
+
+
+//                                        System.out.println("item:"+value);
+//                                        System.out.println(value.get(0).getClass().getSimpleName()+" "+value.get(1).getClass().getSimpleName()+" "+value.get(2).getClass().getSimpleName()+" "+value.get(3).getClass().getSimpleName()+" "+value.get(4).getClass().getSimpleName()+" "+value.get(5).getClass().getSimpleName());
+                                        value.clear();
+
 //                                        Log.d(TAG, document.getId() + " => " + document.getData());
                                     }
-
+                                    adapter.setData(allCommodities);
+                                    lvAllCommodity.setAdapter(adapter);
+//                                    System.out.println("sssssssssss: "+ allCommodities);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
 //                                    Log.w(TAG, "Error getting documents.", task.getException());
@@ -114,9 +125,6 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-//                allCommodities = dbHelper.readAllCommodities();
-//                adapter.setData(allCommodities);
-//                lvAllCommodity.setAdapter(adapter);
             }
         });
 

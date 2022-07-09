@@ -7,7 +7,7 @@ package com.example.comp9323_saasproj.bean;
 public class Commodity {
 
     //编号
-    private Integer id;
+    private String id;
     //标题
     private String title;
     //类别
@@ -23,11 +23,11 @@ public class Commodity {
     //用户学号
     private String stuId;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

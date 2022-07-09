@@ -4,179 +4,151 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/tv_publish_info"
-        android:text="发布帖子"
-        android:textSize="40sp"
-        android:textStyle="italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#7ED6D8"
+        android:gravity="center_horizontal"
+        android:text="Post Forum"
         android:textColor="@color/brown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:background="#7ED6D8"/>
-    <TextView
-        android:id="@+id/tv_student_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_publish_info"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:textStyle="italic"/>
-    <TextView
-        android:id="@+id/tv_add_photo"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="添加照片"
-        android:textSize="22sp"
-        android:layout_below="@+id/tv_student_id"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginLeft="7dp" />
-    <ImageButton
-        android:id="@+id/iv_photo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/icon"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/tv_student_id"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp" />
+        android:textSize="40sp"
+        android:textStyle="italic" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:text="标题"
-        android:textSize="22sp"
-        android:layout_below="@+id/iv_photo"
-        android:layout_marginStart="25dp"
+        android:layout_below="@+id/tv_publish_info"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp" />
+        android:text="Title"
+        android:textSize="22sp" />
+
     <EditText
         android:id="@+id/et_title"
         android:layout_width="260dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/iv_photo"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tv_publish_info"
         android:layout_marginStart="105dp"
-        android:textColor="@color/teal_700"
+        android:layout_marginTop="20dp"
+        android:hint="Edit title"
         android:maxLines="1"
-        android:hint="请输入标题"
-        android:textSize="18sp"
-        android:layout_marginLeft="105dp" />
+        android:textColor="@color/teal_700"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/tv_type"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="类别"
-        android:textSize="22sp"
         android:layout_below="@+id/tv_title"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp" />
+        android:text="Category"
+        android:textSize="22sp" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_price"-->
+    <!--        android:layout_width="80dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_below="@+id/tv_type"-->
+    <!--        android:layout_marginStart="25dp"-->
+    <!--        android:layout_marginLeft="25dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:text="编号"-->
+    <!--        android:textSize="22sp" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/et_price"-->
+    <!--        android:layout_width="260dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_below="@+id/spn_type"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginStart="105dp"-->
+    <!--        android:textColor="@color/teal_700"-->
+    <!--        android:inputType="numberDecimal"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:hint="请输入你喜欢的编号"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:layout_marginLeft="105dp" />-->
 
     <Spinner
         android:id="@+id/spn_type"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_below="@+id/et_title"
-        android:layout_marginStart="105dp"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="21dp"
         android:entries="@array/product_type" />
+
     <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="80dp"
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="编号"
-        android:textSize="22sp"
         android:layout_below="@+id/tv_type"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp" />
+        android:text="E-mail"
+        android:textSize="22sp" />
+
     <EditText
-        android:id="@+id/et_price"
+        android:id="@+id/et_email"
         android:layout_width="260dp"
         android:layout_height="40dp"
         android:layout_below="@+id/spn_type"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="105dp"
-        android:textColor="@color/teal_700"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        android:hint="请输入你喜欢的编号"
-        android:textSize="18sp"
-        android:layout_marginLeft="105dp" />
-    <TextView
-        android:id="@+id/tv_phone"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:text="联系方式"
-        android:textSize="22sp"
-        android:layout_below="@+id/tv_price"
-        android:layout_marginStart="7dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="7dp" />
-    <EditText
-        android:id="@+id/et_phone"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/et_price"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/teal_700"
-        android:inputType="phone"
+        android:hint="Please enter your E-mail"
         android:maxLines="1"
-        android:hint="请输入联系方式"
-        android:textSize="18sp"
-        android:layout_marginLeft="105dp" />
+        android:textColor="@color/teal_700"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/tv_description"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="描述"
-        android:textSize="22sp"
         android:layout_below="@+id/tv_phone"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
+        android:text="Description"
+        android:textSize="22sp"
         tools:ignore="RtlCompat" />
+
     <EditText
         android:id="@+id/et_description"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/et_phone"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="105dp"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/tv_description"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:hint="Please enter a brief description of your problems"
         android:textColor="@color/teal_700"
-        android:maxLines="1"
-        android:textSize="18sp"
-        android:hint="请输入简要概述"
+        android:gravity="top|start"
+
+        android:textSize="25sp"
         tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/btn_publish"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/tv_description"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/icon"
-        android:text="发布"
+        android:text="Post"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/tv_description"
         android:layout_marginStart="205dp"
-        android:layout_marginLeft="205dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="320dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:background="@drawable/icon"
-        android:text="返回"
+        android:text="Back"
         android:textSize="25sp" />
 </RelativeLayout>

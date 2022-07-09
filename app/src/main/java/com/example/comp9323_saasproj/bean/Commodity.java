@@ -12,16 +12,11 @@ public class Commodity {
     private String title;
     //类别
     private String category;
-    //价格
-    private float price;
     //联系方式
     private String phone;
-    //商品描述
+    //描述
     private String description;
-    //商品图片,以二进制字节存储
-    private byte[] picture;
-    //用户学号
-    private String stuId;
+
 
     public String getId() {
         return id;
@@ -47,14 +42,6 @@ public class Commodity {
         this.category = category;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -71,19 +58,4 @@ public class Commodity {
         this.description = description;
     }
 
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
-    }
-
-    public String getStuId() {
-        return stuId;
-    }
-
-    public void setStuId(String stuId) {
-        this.stuId = stuId;
-    }
 }

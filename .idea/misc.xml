@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/9323SaaSProj/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3445" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_add_commodity.xml" value="0.34270833333333334" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.13179347826086957" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/layout_all_commodity.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.28894101366584685" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2306270471822165" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22674102783203126" />

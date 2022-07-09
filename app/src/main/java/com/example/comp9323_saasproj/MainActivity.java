@@ -24,31 +24,56 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.comp9323_saasproj.databinding.ActivityMainBinding;
-
+import com.example.comp9323_saasproj.adapter.AllCommodityAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private TextView textViewSignUp;
-    private Button buttonLogin;
 
-    private AppBarConfiguration appBarConfiguration;
+    ListView lvAllCommodity;
+
+
     private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 //    private ActivityMainBinding binding;
+    AllCommodityAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        lvAllCommodity = findViewById(R.id.lv_all_commodity);
 
+        adapter = new AllCommodityAdapter(getApplicationContext());
+        lvAllCommodity.setAdapter(adapter);
+        final Bundle bundle = this.getIntent().getExtras();
+        final TextView tvStuNumber = findViewById(R.id.tv_student_number);
+        String str = "";
+        if (bundle != null) {
+            str = "Welcome" + bundle.getString("username") + ", Hello!";
+        }
+        tvStuNumber.setText(str);
+        final String stuNum = tvStuNumber.getText().toString();//substring(2, tvStuNumber.getText().length() - 4);
+        ImageButton IbAddProduct = findViewById(R.id.ib_add_product);
+
+        IbAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCommodityActivity.class);
+                if (bundle != null) {
+                    //获取学生学号
+                    bundle.putString("user_id", stuNum);
+                    intent.putExtras(bundle);
+                }
+                startActivity(intent);
+            }
+        });
 
     }
 

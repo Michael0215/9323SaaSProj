@@ -34,12 +34,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseAuth=FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewSignUp = findViewById(R.id.textViewSignUp);
 
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

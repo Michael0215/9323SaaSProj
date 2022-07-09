@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:text="201809601134"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:layout_marginLeft="10dp" />
+        <TextView
+            android:id="@+id/tv_current_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2020年5月19日   23:02:02"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            android:textStyle="italic"
+            android:layout_marginLeft="30dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="预防:
+
+自身免疫是一个复杂的、多因素效
+应的自然现象。除外界影响(如药物半抗原、微生物感染)外，还与机体自身的
+遗传因素密切相关。特别是可能与主要组织相容性系统中的免疫应答基因和(或)免疫抑制基因
+的异常有关。故在预防方面最主要是避免接触过敏源。"
+        android:textSize="20sp"
+
+        android:layout_marginTop="5dp"
+        android:textColor="@color/brown"
+        android:layout_marginLeft="20dp" />
+</LinearLayout>

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="product_type">
-        <item>运动</item>
-        <item>生活</item>
-        <item>食谱</item>
-        <item>心理</item>
-        <item>其他</item>
+        <item>Prevention</item>
+        <item>Curing</item>
+        <item>General</item>
     </string-array>
 </resources>

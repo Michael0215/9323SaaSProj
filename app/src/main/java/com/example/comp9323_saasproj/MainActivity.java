@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,8 +31,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity{
 
     ListView lvAllCommodity;
-
     FirebaseFirestore firebaseFirestore;
+
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
 //    private ActivityMainBinding binding;
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvAllCommodity = findViewById(R.id.lv_all_commodity);
-
         adapter = new AllCommodityAdapter(getApplicationContext());
         lvAllCommodity.setAdapter(adapter);
+
         final Bundle bundle = this.getIntent().getExtras();
         final TextView tvStuNumber = findViewById(R.id.tv_student_number);
         String str = "";
@@ -84,51 +85,48 @@ public class MainActivity extends AppCompatActivity{
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     ArrayList<String> value = new ArrayList<>();
-
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-
                                         Commodity commodity = new Commodity();
-
-//                                        System.out.println("id type:"+document.getId().getClass().getSimpleName());
-                                        Toast.makeText(MainActivity.this, document.getId() + " => " + document.getData(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
                                         //set db id as commodity id
                                         value.add((String)document.getId());
                                         for (Map.Entry mapElement : document.getData().entrySet()){
                                             value.add((String)mapElement.getValue().toString());
                                         }
-//                                        value.remove(1);
-
-//                                        System.out.println(value.size());
                                         commodity.setId(value.get(0));
                                         commodity.setCategory(value.get(1));
                                         commodity.setDescription(value.get(2));
                                         commodity.setPhone(value.get(3));
                                         commodity.setTitle(value.get(4));
                                         allCommodities.add(commodity);
-
-
-//                                        System.out.println("item:"+value);
-//                                        System.out.println(value.get(0).getClass().getSimpleName()+" "+value.get(1).getClass().getSimpleName()+" "+value.get(2).getClass().getSimpleName()+" "+value.get(3).getClass().getSimpleName()+" "+value.get(4).getClass().getSimpleName()+" "+value.get(5).getClass().getSimpleName());
                                         value.clear();
-
-//                                        Log.d(TAG, document.getId() + " => " + document.getData());
                                     }
                                     adapter.setData(allCommodities);
                                     lvAllCommodity.setAdapter(adapter);
-
-//                                    System.out.println("sssssssssss: "+ allCommodities);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
-//                                    Log.w(TAG, "Error getting documents.", task.getException());
                                 }
                             }
                         });
-
-
-
             }
         });
-
+        lvAllCommodity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Commodity commodity = (Commodity) lvAllCommodity.getAdapter().getItem(position);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("position",position);
+//                bundle1.putByteArray("picture",commodity.getPicture());
+                bundle1.putString("title",commodity.getTitle());
+                bundle1.putString("description",commodity.getDescription());
+//                bundle1.putFloat("price",commodity.getPrice());
+                bundle1.putString("phone",commodity.getPhone());
+//                bundle1.putString("stuId",stuNum);
+                bundle1.putString("category", commodity.getCategory());
+                Intent intent = new Intent(MainActivity.this, ReviewCommodityActivity.class);
+                intent.putExtras(bundle1);
+                startActivity(intent);
+            }
+        });
     }
-
 }

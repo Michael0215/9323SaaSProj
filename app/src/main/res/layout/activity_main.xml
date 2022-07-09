@@ -59,16 +59,18 @@
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/icon" />
+
     <ImageButton
         android:id="@+id/ib_daily_use"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="205dp"
         android:layout_below="@id/tv_student_number"
-        android:src="@drawable/icon"
-        android:scaleType="centerCrop"
+        android:layout_marginStart="205dp"
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="0dp"
         android:background="@color/white"
-        android:layout_marginLeft="205dp" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon" />
 
     <ImageButton
         android:id="@+id/ib_sports_good"

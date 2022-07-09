@@ -43,8 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
         Button cancel = findViewById(R.id.buttonCancel);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+//        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+//        FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -112,28 +112,32 @@ public class RegisterActivity extends AppCompatActivity {
                             //progressDialog.cancel();
                             //execute profile
                             //startActivity(new Intent(getApplicationContext(), Login.class));
-                            createUserStructure();
+
+
+//                            createUserStructure();
+
+
                             Toast.makeText(RegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
                             finish();
                         }else{
-                            Toast.makeText(RegisterActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Registered failed, try email format again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
                         }
                     }
                 });
     }
 
-    private void createUserStructure(){
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        String name = "Your Name:";
-        String faculty ="Your Faculty";
-        String id = user.getUid();
-        String mailAddress = user.getEmail();
-        String course = "Your Course";
-        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
-        databaseReference.child(id).setValue(userInformation);
-    }
+//    private void createUserStructure(){
+//        FirebaseUser user = firebaseAuth.getCurrentUser();
+//        String name = "Your Name:";
+//        String faculty ="Your Faculty";
+//        String id = user.getUid();
+//        String mailAddress = user.getEmail();
+//        String course = "Your Course";
+//        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
+//        databaseReference.child(id).setValue(userInformation);
+//    }
 
 
     public boolean CheckInput() {
@@ -149,15 +153,15 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         if(confirm_password.trim().equals("")) {
-            Toast.makeText(RegisterActivity.this,"Confirm password cannot be empty!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this,"Confirmed password cannot be empty!",Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!password.trim().equals(confirm_password.trim())) {
             Toast.makeText(RegisterActivity.this,"Password input is inconsistent!",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(password.length()<=6){
-            Toast.makeText(RegisterActivity.this,"Please create a longer password more than 6 characters!",Toast.LENGTH_SHORT).show();
+        if(password.length()<6){
+            Toast.makeText(RegisterActivity.this,"Please create a stronger password, your password should be at least 6 characters!",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

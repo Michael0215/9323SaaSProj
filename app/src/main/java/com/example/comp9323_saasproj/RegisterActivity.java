@@ -83,9 +83,9 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser(){
         String email = tvStuNumber.getText().toString().trim();
         String password= tvStuPwd.getText().toString().trim();
-        System.out.println("here1");
-        System.out.println(email);
-        System.out.println(password);
+//        System.out.println("here1");
+//        System.out.println(email);
+//        System.out.println(password);
 //        if(TextUtils.isEmpty(email)){
 //            Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
 //            return;
@@ -98,12 +98,12 @@ public class RegisterActivity extends AppCompatActivity {
 //        }
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
-        System.out.println("here2");
+//        System.out.println("here2");
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        System.out.println("here3");
+//                        System.out.println("here3");
                         if(task.isSuccessful()) {
 //                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //                            updateUI(user);

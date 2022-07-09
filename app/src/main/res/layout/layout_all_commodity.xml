@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@color/purple_500">
+    <ImageView
+        android:id="@+id/iv_commodity"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        android:background="@color/white"
+        android:src="@drawable/icon"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+        <!-- TextView赋值只是为了方便查看布局,其值不会真正显示 -->
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一科普一下糖尿病"
+            android:textSize="25sp"
+            android:textColor="@color/teal_700"/>
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生活方面"
+            android:textSize="22sp"
+            android:textColor="@color/brown"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="饮食:饮食方面要做到规律、合理，即以高蛋白高维生素食物为主。选择营养价值高的植物或动物蛋白，如牛奶、蛋类、鱼类、瘦肉、各种豆制品等。各种新鲜蔬菜、瓜果富含维生素，营养价值高。
+"
+            android:textColor="@color/green"
+            android:textSize="18sp"
+            android:layout_marginTop="6dp"/>
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="健康、饮食、科普"
+            android:textColor="@color/red"
+            android:textSize="22sp"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</LinearLayout>

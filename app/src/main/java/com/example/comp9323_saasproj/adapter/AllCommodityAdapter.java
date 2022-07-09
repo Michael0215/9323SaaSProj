@@ -85,13 +85,13 @@ public class AllCommodityAdapter extends BaseAdapter {
             ivCommodity = itemView.findViewById(R.id.iv_commodity);
             tvTitle.setText(commodity.getTitle());//写入标题
             tvDescription.setText(commodity.getDescription());//写入内容
-            tvPrice.setText(String.valueOf(commodity.getPrice()));//写入标签
+//            tvPrice.setText(String.valueOf(commodity.getPrice()));//写入标签
             tvType.setText(commodity.getCategory());//详细描述
-            byte[] picture = commodity.getPicture();
+//            byte[] picture = commodity.getPicture();
             //从字节数组中解码生成不可变的位图
             //public static Bitmap decodeByteArray(byte[] data, int offset, int length)
-            Bitmap img = BitmapFactory.decodeByteArray(picture,0,picture.length);
-            ivCommodity.setImageBitmap(img);
+//            Bitmap img = BitmapFactory.decodeByteArray(picture,0,picture.length);
+//            ivCommodity.setImageBitmap(img);
         }
     }
 }

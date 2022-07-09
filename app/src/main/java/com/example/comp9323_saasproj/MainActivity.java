@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.comp9323_saasproj.bean.Commodity;
-import com.example.comp9323_saasproj.util.CommodityDbHelper;
+//import com.example.comp9323_saasproj.util.CommodityDbHelper;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity{
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
 //    private ActivityMainBinding binding;
-    CommodityDbHelper dbHelper;
+//    CommodityDbHelper dbHelper;
     AllCommodityAdapter adapter;
     List<Commodity> allCommodities = new ArrayList<>();
 //    Commodity commodity = new

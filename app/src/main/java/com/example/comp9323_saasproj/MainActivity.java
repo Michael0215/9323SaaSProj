@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity{
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                allCommodities.clear();
                 firebaseFirestore.collection("UNSWusers")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity{
 //                                        Log.d(TAG, document.getId() + " => " + document.getData());
                                     }
                                     adapter.setData(allCommodities);
-
                                     lvAllCommodity.setAdapter(adapter);
+
 //                                    System.out.println("sssssssssss: "+ allCommodities);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();

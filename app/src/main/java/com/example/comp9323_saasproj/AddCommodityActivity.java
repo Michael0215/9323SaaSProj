@@ -153,7 +153,7 @@ public class AddCommodityActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
 
-                                    Toast.makeText(AddCommodityActivity.this, "DocumentSnapshot added with ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(AddCommodityActivity.this, "DocumentSnapshot added with ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
 //                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                                     Intent intent = new Intent(AddCommodityActivity.this, MainActivity.class);
                                     startActivity(intent);

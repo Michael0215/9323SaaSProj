@@ -116,14 +116,14 @@
 
     <EditText
         android:id="@+id/et_description"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
+        android:layout_width="340dp"
+        android:layout_height="280dp"
         android:layout_below="@+id/tv_description"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
+        android:gravity="top|start"
         android:hint="Please enter a brief description of your problems"
         android:textColor="@color/teal_700"
-        android:gravity="top|start"
 
         android:textSize="25sp"
         tools:ignore="RtlCompat" />
@@ -134,7 +134,7 @@
         android:layout_height="80dp"
         android:layout_below="@+id/tv_description"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="291dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/icon"
         android:text="Post"
@@ -146,7 +146,7 @@
         android:layout_height="80dp"
         android:layout_below="@+id/tv_description"
         android:layout_marginStart="205dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="291dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/icon"
         android:text="Back"

@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity{
 //                                        Log.d(TAG, document.getId() + " => " + document.getData());
                                     }
                                     adapter.setData(allCommodities);
+
                                     lvAllCommodity.setAdapter(adapter);
 //                                    System.out.println("sssssssssss: "+ allCommodities);
                                 } else {

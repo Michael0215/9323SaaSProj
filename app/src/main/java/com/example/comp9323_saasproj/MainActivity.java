@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity{
                                         Commodity commodity = new Commodity();
 
 //                                        System.out.println("id type:"+document.getId().getClass().getSimpleName());
-                                        Toast.makeText(MainActivity.this, document.getId() + " => " + document.getData(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
                                         //set db id as commodity id
                                         value.add((String)document.getId());
                                         for (Map.Entry mapElement : document.getData().entrySet()){
@@ -123,8 +123,6 @@ public class MainActivity extends AppCompatActivity{
                                 }
                             }
                         });
-
-
 
             }
         });

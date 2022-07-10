@@ -119,7 +119,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Toast.makeText(RegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
-                            finish();
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
                         }else{
                             Toast.makeText(RegisterActivity.this, "Registered failed, try email format again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();

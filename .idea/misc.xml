@@ -4,21 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_add_commodity.xml" value="0.25" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_login.xml" value="0.1213768115942029" />
-        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_main.xml" value="0.17760416666666667" />
-        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.25364583333333335" />
-        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_review_commodity.xml" value="0.23134328358208955" />
-        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/layout_commodity_review.xml" value="0.1" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_main.xml" value="0.17806484295845998" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_review_commodity.xml" value="0.22" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_user_type.xml" value="0.25181159420289856" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/layout_all_commodity.xml" value="0.17806484295845998" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/layout_commodity_review.xml" value="0.36614583333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_add_commodity.xml" value="0.2690048217773438" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3853820598006645" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15384615384615385" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2527404785156251" />
-        <entry key="app/src/main/res/layout/activity_review_commodity.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/layout/activity_user_main_page.xml" value="0.4287109375" />
         <entry key="app/src/main/res/layout/activity_user_page.xml" value="0.11676798378926039" />
-        <entry key="app/src/main/res/layout/activity_user_type.xml" value="0.1585612968591692" />
         <entry key="app/src/main/res/layout/bottonshape.xml" value="0.13551165146909827" />
         <entry key="app/src/main/res/layout/bottonstyle.xml" value="0.13500506585612967" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.18847198486328126" />

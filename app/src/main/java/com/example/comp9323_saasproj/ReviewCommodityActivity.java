@@ -146,30 +146,41 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
-                                    ArrayList<String> value = new ArrayList<>();
+//                                    ArrayList<String> value = new ArrayList<>();
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         Review review = new Review();
                                         Toast.makeText(ReviewCommodityActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
                                         //set db id as commodity id
-                                        value.add((String)document.getId());
-                                        for (Map.Entry mapElement : document.getData().entrySet()){
-                                            value.add((String)mapElement.getValue().toString());
+//                                        value.add((String)document.getId());
+                                        for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+                                            if (mapElement.getKey().equals("Content")){
+                                                review.setContent(mapElement.getValue().toString());
+                                            }
+                                            if (mapElement.getKey().equals("Time")){
+                                                review.setCurrentTime(mapElement.getValue().toString());
+                                            }
+                                            if (mapElement.getKey().equals("E-mail")){
+                                                review.setPhone(mapElement.getValue().toString());
+                                            }
+                                            if (mapElement.getKey().equals("postID")){
+                                                review.setPostID(mapElement.getValue().toString());
+                                            }
+//                                            value.add((String)mapElement.getValue().toString());
                                         }
-                                        review.setPhone(value.get(1));
-                                        review.setContent(value.get(2));
-                                        review.setCurrentTime(value.get(3));
-                                        review.setPostID(value.get(4));
-                                        System.out.println(value.get(1));
-                                        System.out.println(value.get(2));
-                                        System.out.println(value.get(3));
-                                        System.out.println(value.get(4));
+//                                        review.setPhone(value.get(1));
+//                                        review.setContent(value.get(2));
+//                                        review.setCurrentTime(value.get(3));
+//                                        review.setPostID(value.get(4));
+//                                        System.out.println(value.get(1));
+//                                        System.out.println(value.get(2));
+//                                        System.out.println(value.get(3));
+//                                        System.out.println(value.get(4));
                                         allReviews.add(review);
-                                        value.clear();
+//                                        value.clear();
                                     }
 //                                    System.out.println("sssssssssssssssss"+allReviews);
                                     adapter.setData(allReviews);
                                     lvReview.setAdapter(adapter);
-
                                 } else {
                                     Toast.makeText(ReviewCommodityActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
                                 }

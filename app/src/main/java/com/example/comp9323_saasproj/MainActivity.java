@@ -84,22 +84,39 @@ public class MainActivity extends AppCompatActivity{
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
-                                    ArrayList<String> value = new ArrayList<>();
+//                                    ArrayList<String> value = new ArrayList<>();
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         Commodity commodity = new Commodity();
                                         Toast.makeText(MainActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
                                         //set db id as commodity id
-                                        value.add((String)document.getId());
-                                        for (Map.Entry mapElement : document.getData().entrySet()){
-                                            value.add((String)mapElement.getValue().toString());
+//                                        value.add((String)document.getId());
+                                        for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+//                                            System.out.println("key= " + mapElement.getKey() + " and value= " + mapElement.getValue());
+                                            if (mapElement.getKey().equals("Category")){
+                                                commodity.setCategory(mapElement.getValue().toString());
+                                            }
+                                            if (mapElement.getKey().equals("Description")){
+                                                commodity.setDescription(mapElement.getValue().toString());
+                                            }
+                                            if (mapElement.getKey().equals("E-mail")){
+                                                commodity.setPhone(mapElement.getValue().toString());
+                                            }
+                                            if (mapElement.getKey().equals("Title")){
+                                                commodity.setTitle(mapElement.getValue().toString());
+                                            }
+//                                            value.add((String)mapElement.getValue().toString());
                                         }
-                                        commodity.setId(value.get(0));
-                                        commodity.setCategory(value.get(1));
-                                        commodity.setDescription(value.get(2));
-                                        commodity.setPhone(value.get(3));
-                                        commodity.setTitle(value.get(4));
+
+                                        commodity.setId(document.getId());
+//                                        commodity.setId(value.get(0));
+//                                        commodity.setCategory(value.get(1));
+//                                        commodity.setDescription(value.get(2));
+//                                        commodity.setPhone(value.get(3));
+//                                        commodity.setTitle(value.get(4));
                                         allCommodities.add(commodity);
-                                        value.clear();
+
+
+//                                        value.clear();
                                     }
                                     adapter.setData(allCommodities);
                                     lvAllCommodity.setAdapter(adapter);

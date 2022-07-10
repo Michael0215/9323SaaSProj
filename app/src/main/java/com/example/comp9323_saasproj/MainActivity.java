@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Commodity commodity = (Commodity) lvAllCommodity.getAdapter().getItem(position);
                 Bundle bundle1 = new Bundle();
-                bundle1.putInt("position",position);
+                bundle1.putString("id", commodity.getId());
 //                bundle1.putByteArray("picture",commodity.getPicture());
                 bundle1.putString("title",commodity.getTitle());
                 bundle1.putString("description",commodity.getDescription());

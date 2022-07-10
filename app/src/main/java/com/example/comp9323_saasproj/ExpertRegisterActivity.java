@@ -1,85 +1,75 @@
 package com.example.comp9323_saasproj;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterActivity extends AppCompatActivity {
+public class ExpertRegisterActivity extends AppCompatActivity {
 
+    ImageButton ivPhoto;
     EditText tvStuNumber,tvStuPwd,tvStuConfirmPwd;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_expert_register);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        progressDialog = new ProgressDialog(this);
         tvStuNumber = findViewById(R.id.et_username);
         tvStuPwd = findViewById(R.id.et_password);
         tvStuConfirmPwd = findViewById(R.id.et_confirm_password);
 
+        ivPhoto = findViewById(R.id.iv_photo);
+        ivPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,null);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                startActivityForResult(intent,1);
+            }
+        });
+
+
+        Button btnCancel = findViewById(R.id.buttonCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
         Button register = findViewById(R.id.buttonRegister);
-        Button cancel = findViewById(R.id.buttonCancel);
-
-
-//        databaseReference = FirebaseDatabase.getInstance().getReference("User");
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-
         register.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if(CheckInput()) {
-//                    User user = new User();
-//                    user.setUsername(tvStuNumber.getText().toString());
-//                    user.setPassword(tvStuPwd.getText().toString());
-//                    UserDbHelper dbHelper = new UserDbHelper(getApplicationContext(),UserDbHelper.DB_NAME,null,1);
-//                    dbHelper.addUser(user);
                     registerUser();
-//                    Toast.makeText(RegisterActivity.this,"Congratulations! Registration succeeded!",Toast.LENGTH_SHORT).show();
-//                    finish();
                 }
-//                if (v.getId() == R.id.buttonRegister) {
-//                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                }
+
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (v.getId() == R.id.buttonCancel) {
-//                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
     }
+
     private void registerUser(){
         String email = tvStuNumber.getText().toString().trim();
         String password= tvStuPwd.getText().toString().trim();
@@ -117,29 +107,20 @@ public class RegisterActivity extends AppCompatActivity {
 //                            createUserStructure();
 
 
-                            Toast.makeText(RegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ExpertRegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
                             // 加一个flag
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            Intent intent = new Intent(ExpertRegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(RegisterActivity.this, "Registered failed, try email format again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ExpertRegisterActivity.this, "Registered failed, try email format again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
                         }
                     }
                 });
     }
 
-//    private void createUserStructure(){
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-//        String name = "Your Name:";
-//        String faculty ="Your Faculty";
-//        String id = user.getUid();
-//        String mailAddress = user.getEmail();
-//        String course = "Your Course";
-//        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
-//        databaseReference.child(id).setValue(userInformation);
-//    }
+
 
 
     public boolean CheckInput() {
@@ -147,29 +128,25 @@ public class RegisterActivity extends AppCompatActivity {
         String password = tvStuPwd.getText().toString();
         String confirm_password = tvStuConfirmPwd.getText().toString();
         if(username.trim().equals("")) {
-            Toast.makeText(RegisterActivity.this,"User name cannot be empty!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpertRegisterActivity.this,"User name cannot be empty!",Toast.LENGTH_SHORT).show();
             return false;
         }
         if(password.trim().equals("")) {
-            Toast.makeText(RegisterActivity.this,"Password cannot be empty!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpertRegisterActivity.this,"Password cannot be empty!",Toast.LENGTH_SHORT).show();
             return false;
         }
         if(confirm_password.trim().equals("")) {
-            Toast.makeText(RegisterActivity.this,"Confirmed password cannot be empty!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpertRegisterActivity.this,"Confirmed password cannot be empty!",Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!password.trim().equals(confirm_password.trim())) {
-            Toast.makeText(RegisterActivity.this,"Password input is inconsistent!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpertRegisterActivity.this,"Password input is inconsistent!",Toast.LENGTH_SHORT).show();
             return false;
         }
         if(password.length()<6){
-            Toast.makeText(RegisterActivity.this,"Please create a stronger password, your password should be at least 6 characters!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpertRegisterActivity.this,"Please create a stronger password, your password should be at least 6 characters!",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
-
-//    private void updateUI(FirebaseUser user) {
-//
-//    }
 }

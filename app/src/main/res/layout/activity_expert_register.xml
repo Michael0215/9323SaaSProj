@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:text="User Register"
+        android:text="Expert Register"
         android:textSize="40sp"
         android:textStyle="italic"
 
@@ -52,9 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_password"
         android:layout_marginStart="5dp"
-
         android:layout_marginTop="40dp"
-
         android:layout_marginEnd="5dp"
         android:drawablePadding="8dp"
         android:hint="Please enter confirmed password here"
@@ -63,12 +61,33 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textSize="25sp" />
+    <TextView
+        android:id="@+id/tv_add_qualification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/et_confirm_password"
+        android:text="Please add your qualification:"
+        android:layout_marginStart="15dp"
+        android:textSize="25sp"
+        />
+
+    <ImageButton
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_add_qualification"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon" />
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="68dp"
-        android:layout_below="@+id/et_confirm_password"
+        android:layout_below="@+id/iv_photo"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="10dp"
@@ -82,8 +101,9 @@
         android:id="@+id/buttonCancel"
         android:layout_width="187dp"
         android:layout_height="67dp"
-        android:layout_below="@+id/et_confirm_password"
+        android:layout_below="@+id/iv_photo"
         android:layout_marginStart="210dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"

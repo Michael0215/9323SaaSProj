@@ -14,9 +14,16 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExpertRegisterActivity extends AppCompatActivity {
 
@@ -24,7 +31,6 @@ public class ExpertRegisterActivity extends AppCompatActivity {
     EditText tvStuNumber,tvStuPwd,tvStuConfirmPwd;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,8 @@ public class ExpertRegisterActivity extends AppCompatActivity {
         tvStuNumber = findViewById(R.id.et_username);
         tvStuPwd = findViewById(R.id.et_password);
         tvStuConfirmPwd = findViewById(R.id.et_confirm_password);
+        progressDialog = new ProgressDialog(this);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         ivPhoto = findViewById(R.id.iv_photo);
         ivPhoto.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +63,6 @@ public class ExpertRegisterActivity extends AppCompatActivity {
             }
         });
 
-
         Button register = findViewById(R.id.buttonRegister);
         register.setOnClickListener(new View.OnClickListener() {
 
@@ -71,47 +78,40 @@ public class ExpertRegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(){
+        FirebaseFirestore firestoreDatabase;
+        firestoreDatabase = FirebaseFirestore.getInstance();
         String email = tvStuNumber.getText().toString().trim();
         String password= tvStuPwd.getText().toString().trim();
-//        System.out.println("here1");
-//        System.out.println(email);
-//        System.out.println(password);
-//        if(TextUtils.isEmpty(email)){
-//            Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
-//            return;
-//            //email is empty, stopping the function execution
-//        }
-//        if(TextUtils.isEmpty(password)){
-//            Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
-//            return;
-//            //email is empty, stopping the function execution
-//        }
+        Map<String, Object> user = new HashMap<>();
+        user.put("E-mail", email);
+        user.put("Password", password);
+        user.put("Type", "expert");
+
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
-//        System.out.println("here2");
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-//                        System.out.println("here3");
                         if(task.isSuccessful()) {
-//                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                            updateUI(user);
-                            //user is successfully reg and logged in
-                            // Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                            //progressDialog.cancel();
-                            //execute profile
-                            //startActivity(new Intent(getApplicationContext(), Login.class));
-
-
-//                            createUserStructure();
-
-
-                            Toast.makeText(ExpertRegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
-                            progressDialog.cancel();
-                            // 加一个flag
-                            Intent intent = new Intent(ExpertRegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
+                            firestoreDatabase.collection("users")
+                                    .add(user)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(ExpertRegisterActivity.this, "Registered Successfully!\nNow you can login.", Toast.LENGTH_SHORT).show();
+                                            progressDialog.cancel();
+                                            Intent intent = new Intent(ExpertRegisterActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(ExpertRegisterActivity.this, "Registered failed, try email format again", Toast.LENGTH_SHORT).show();
+                                            progressDialog.cancel();
+                                        }
+                                    });
                         }else{
                             Toast.makeText(ExpertRegisterActivity.this, "Registered failed, try email format again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
@@ -119,9 +119,6 @@ public class ExpertRegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
     public boolean CheckInput() {
         String username = tvStuNumber.getText().toString();

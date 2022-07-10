@@ -119,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Toast.makeText(RegisterActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
+                            // 加一个flag
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }else{

@@ -4,9 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_add_commodity.xml" value="0.25" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_expert_register.xml" value="0.2418478260869565" />
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_main.xml" value="0.17806484295845998" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_review_commodity.xml" value="0.22" />
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_user_type.xml" value="0.25181159420289856" />
         <entry key="..\:/9323SaaSProj/app/src/main/res/layout/layout_all_commodity.xml" value="0.17806484295845998" />

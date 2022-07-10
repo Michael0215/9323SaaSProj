@@ -37,5 +37,14 @@ public class UserTypeActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnExpert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserTypeActivity.this, ExpertRegisterActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }

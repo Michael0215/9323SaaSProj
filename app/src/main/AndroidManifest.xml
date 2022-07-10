@@ -14,6 +14,9 @@
         android:theme="@style/Theme.COMP9323_SaaSProj"
         tools:targetApi="31">
         <activity
+            android:name=".UserTypeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReviewCommodityActivity"
             android:exported="false" />
         <activity

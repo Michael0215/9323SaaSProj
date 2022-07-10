@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
 
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
-//    private ActivityMainBinding binding;
+    //    private ActivityMainBinding binding;
     AllCommodityAdapter adapter;
     List<Commodity> allCommodities = new ArrayList<>();
 

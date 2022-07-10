@@ -82,7 +82,7 @@ public class AllCommodityAdapter extends BaseAdapter {
             tvDescription = itemView.findViewById(R.id.tv_description);
             ivCommodity = itemView.findViewById(R.id.iv_commodity);
             tvTitle.setText(commodity.getTitle());//写入标题
-            tvDescription.setText(commodity.getDescription());//写入内容
+//            tvDescription.setText(commodity.getDescription());//写入内容
             tvPhone.setText(commodity.getPhone());
             tvType.setText(commodity.getCategory());//详细描述
         }

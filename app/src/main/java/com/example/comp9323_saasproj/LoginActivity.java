@@ -54,10 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getId() == R.id.textViewSignUp) {
-                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, UserTypeActivity.class);
                     startActivity(intent);
-                }
             }
         });
     }

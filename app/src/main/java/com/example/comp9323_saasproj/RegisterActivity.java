@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         tvStuConfirmPwd = findViewById(R.id.et_confirm_password);
 
         Button register = findViewById(R.id.buttonRegister);
-        Button cancel = findViewById(R.id.buttonCancel);
+        ImageButton cancel = findViewById(R.id.buttonCancel);
 
         register.setOnClickListener(new View.OnClickListener() {
 

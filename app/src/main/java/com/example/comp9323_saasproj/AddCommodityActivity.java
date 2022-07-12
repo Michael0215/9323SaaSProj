@@ -59,7 +59,7 @@ public class AddCommodityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_commodity);
-        TextView btnBack = findViewById(R.id.btn_back);
+        ImageButton btnBack = findViewById(R.id.btn_back);
         //返回按钮点击事件
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

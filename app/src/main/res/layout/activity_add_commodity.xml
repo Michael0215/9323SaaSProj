@@ -151,13 +151,12 @@
 <!--        android:text="Back"-->
 <!--        android:textSize="25sp" />-->
 
-    <TextView
+
+    <ImageButton
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="⬅"
-        android:textSize="30sp"
-        tools:ignore="RtlCompat" />
+        android:layout_marginTop="8dp"
+        android:src="@drawable/return2" />
 </RelativeLayout>

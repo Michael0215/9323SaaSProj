@@ -78,7 +78,7 @@ public class ReviewCommodityActivity extends AppCompatActivity {
             phone.setText(b.getString("phone"));
         }
         //返回
-        TextView tvBack = findViewById(R.id.tv_back);
+        ImageButton tvBack = findViewById(R.id.tv_back);
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

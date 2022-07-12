@@ -54,7 +54,7 @@ public class ExpertRegisterActivity extends AppCompatActivity {
         });
 
 
-        Button btnCancel = findViewById(R.id.buttonCancel);
+        ImageButton btnCancel = findViewById(R.id.buttonCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -134,7 +134,7 @@ public class ReviewCommodityActivity extends AppCompatActivity {
 
         //刷新！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
         final ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
-        TextView tvRefresh = findViewById(R.id.tv_refresh);
+        ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

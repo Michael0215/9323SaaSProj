@@ -8,13 +8,13 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:background="@color/purple_500">
-    <ImageView
-        android:id="@+id/iv_commodity"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:scaleType="centerCrop"
-        android:background="@color/white"
-        android:src="@drawable/icon"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_commodity"-->
+<!--        android:layout_width="140dp"-->
+<!--        android:layout_height="140dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:background="@color/white"-->
+<!--        android:src="@drawable/icon"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

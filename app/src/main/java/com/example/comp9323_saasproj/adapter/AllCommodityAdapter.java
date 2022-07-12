@@ -72,7 +72,7 @@ public class AllCommodityAdapter extends BaseAdapter {
 
     //定义静态类,包含每一个item的所有元素
     static class ViewHolder {
-        ImageView ivCommodity;
+//        ImageView ivCommodity;
         TextView tvTitle,tvType,tvDescription,tvPhone;
 
         public ViewHolder(View itemView,Commodity commodity) {
@@ -80,7 +80,7 @@ public class AllCommodityAdapter extends BaseAdapter {
             tvType = itemView.findViewById(R.id.tv_type);
             tvPhone = itemView.findViewById(R.id.tv_phone);
             tvDescription = itemView.findViewById(R.id.tv_description);
-            ivCommodity = itemView.findViewById(R.id.iv_commodity);
+//            ivCommodity = itemView.findViewById(R.id.iv_commodity);
             tvTitle.setText(commodity.getTitle());//写入标题
 //            tvDescription.setText(commodity.getDescription());//写入内容
             tvPhone.setText(commodity.getPhone());

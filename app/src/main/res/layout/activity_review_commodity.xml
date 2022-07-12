@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_publish_info"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="#7ED6D8"-->
-    <!--        android:gravity="center_horizontal"-->
-    <!--        android:text="Post Forum"-->
-    <!--        android:textColor="@color/brown"-->
-    <!--        android:textSize="40sp"-->
-    <!--        android:textStyle="italic" />-->
     <TextView
-        android:id="@+id/tv_refresh"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_publish_info"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="25dp"
-        android:text="刷新"
-        android:textColor="@color/purple_500"
-        android:textSize="24sp" />
-    <ImageView
-        android:id="@+id/iv_commodity"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
+        android:background="#D6D7D7"
+        android:gravity="center_horizontal"
+        android:text="Post"
+        android:textColor="@color/brown"
+        android:textSize="40sp"
+        android:textStyle="italic" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_publish_info"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#7ED6D8"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="Post Forum"-->
+<!--            android:textColor="@color/brown"-->
+<!--            android:textSize="40sp"-->
+<!--            android:textStyle="italic" />-->
+    <ImageButton
+        android:id="@+id/tv_refresh"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/icon" />
+        android:src="@drawable/refresh" />
+
+
+
     <TextView
         android:id="@+id/tv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="330dp"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="25dp"
-        android:text="返回"
-        android:textColor="@color/purple_500"
-        android:textSize="24sp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="⬅"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <ImageButton
         android:id="@+id/ib_my_love"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="335dp"
-        android:layout_marginLeft="335dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="85dp"
         android:scaleType="centerCrop"
         android:src="@drawable/icon" />
 
@@ -57,7 +58,7 @@
         android:id="@+id/tv_title"
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/iv_commodity"
+        android:layout_below="@+id/tv_publish_info"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:text="Title"
@@ -67,11 +68,11 @@
         android:id="@+id/et_title"
         android:layout_width="260dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/iv_commodity"
+        android:layout_below="@+id/tv_publish_info"
         android:layout_marginStart="125dp"
         android:layout_marginTop="5dp"
-        android:text="Edit title"
         android:maxLines="1"
+        android:text="Edit title"
         android:textColor="@color/teal_700"
         android:textSize="20sp" />
 
@@ -167,9 +168,9 @@
             android:layout_marginEnd="10dp"/>
         <Button
             android:id="@+id/btn_submit"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="提交评论"
+            android:text="Submit"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginStart="2dp" />
@@ -181,7 +182,7 @@
         android:layout_below="@id/ll_comment"
         android:layout_marginStart="10dp"
         android:layout_marginTop="1dp"
-        android:text="评论内容:"
+        android:text="Comment:"
         android:textSize="20sp" />
 
     <ListView

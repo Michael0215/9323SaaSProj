@@ -1,4 +1,4 @@
-package com.example.comp9323_saasproj;
+package com.example.comp9323_saasproj.bean;
 
 public class UserInformation {
     public String Id;

@@ -56,7 +56,41 @@ public class ReviewCommodityActivity extends AppCompatActivity {
     FirebaseFirestore firestoreDatabase;
     private FirebaseAuth firebaseAuth;
 
-    //创建！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+    int flag = 0;
+
+    public void readFirebaseType(AddCommodityActivity.FirebaseCallback callback) {
+        firestoreDatabase = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser cur_user = firebaseAuth.getCurrentUser();
+        String email = cur_user.getEmail();
+        firestoreDatabase.collection("users")
+                .whereEqualTo("E-mail", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+                                    if (mapElement.getKey().equals("Type")){
+                                        if(mapElement.getValue().toString().equals("expert")){
+                                            flag = 1;
+                                        }
+                                        callback.onResponse(flag);
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            Toast.makeText(ReviewCommodityActivity.this, "Retrieving type failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+    public interface FirebaseCallback {
+        void onResponse(int flag);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +102,12 @@ public class ReviewCommodityActivity extends AppCompatActivity {
         description.setMovementMethod(ScrollingMovementMethod.getInstance());
         firestoreDatabase = FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
+
+        readFirebaseType(new AddCommodityActivity.FirebaseCallback() {
+            @Override
+            public void onResponse(int flag) {
+            }
+        });
 
         Bundle b = getIntent().getExtras();
         if( b != null) {
@@ -100,6 +140,11 @@ public class ReviewCommodityActivity extends AppCompatActivity {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (flag == 0){
+                    Toast.makeText(ReviewCommodityActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //先检查是否为空
                 if(CheckInput()) {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

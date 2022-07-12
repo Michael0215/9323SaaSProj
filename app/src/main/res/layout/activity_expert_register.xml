@@ -3,83 +3,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textSize="32dp"
-    android:background="@drawable/background2">
+    android:background="@drawable/register_expert">
 
     <TextView
         android:id="@+id/tv_title"
-        android:text="Expert Register"
-        android:textSize="40sp"
-        android:textStyle="italic"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"/>
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
+        android:text="Expert Register"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="italic"/>
 
     <EditText
         android:id="@+id/et_username"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_below="@+id/tv_title"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:drawablePadding="8dp"
         android:hint="Please enter e-mail here"
         android:maxLines="1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:hint="Please enter password here"
-        android:textSize="25sp"
+        android:layout_below="@+id/et_username"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:drawablePadding="8dp"
+        android:hint="Please enter password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_below="@+id/et_username"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_confirm_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/et_password"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:drawablePadding="8dp"
-        android:hint="Please enter confirmed password here"
+        android:hint="Please enter confirmed password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
     <TextView
         android:id="@+id/tv_add_qualification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/et_confirm_password"
-        android:text="Please add your qualification:"
-        android:layout_marginStart="15dp"
-        android:textSize="25sp"
+        android:text="Please add your qualification below:"
+
+        android:textSize="20sp"
         />
 
     <ImageButton
         android:id="@+id/iv_photo"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="200dp"
         android:layout_below="@+id/tv_add_qualification"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:src="@drawable/icon" />
 
@@ -88,28 +91,21 @@
         android:layout_width="wrap_content"
         android:layout_height="68dp"
         android:layout_below="@+id/iv_photo"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        android:alpha="0.7"
-        android:backgroundTint="#FFA1BD"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#00A2E8"
         android:text="Register"
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        android:textSize="25sp"  />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonCancel"
-        android:layout_width="187dp"
-        android:layout_height="67dp"
-        android:layout_below="@+id/iv_photo"
-        android:layout_marginStart="210dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:alpha="0.7"
-        android:backgroundTint="#FFA1BD"
-        android:text="Cancel"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        android:layout_width="30dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#A2D5F2"
+        android:scaleType="centerCrop"
+        android:src="@drawable/return1" />
 </RelativeLayout>

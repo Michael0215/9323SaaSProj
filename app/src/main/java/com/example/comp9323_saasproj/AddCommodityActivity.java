@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +34,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class AddCommodityActivity extends AppCompatActivity {
 
     ListView lvAllCommodity;
-    EditText etTitle,etPhone,etDescription;
+    EditText etTitle,etDescription;
+    TextView etPhone;
     Spinner spType;
     Button btnPublish;
     FirebaseFirestore firestoreDatabase;
@@ -80,6 +82,10 @@ public class AddCommodityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_commodity);
         ImageButton btnBack = findViewById(R.id.btn_back);
+        etPhone = findViewById(R.id.tv_email);
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser cur_user = firebaseAuth.getCurrentUser();
+        etPhone.setText(cur_user.getEmail());
         readFirebaseType(new FirebaseCallback() {
             @Override
             public void onResponse(int flag) {
@@ -93,7 +99,7 @@ public class AddCommodityActivity extends AppCompatActivity {
             }
         });
         etTitle = findViewById(R.id.et_title);
-        etPhone = findViewById(R.id.et_email);
+
         etDescription = findViewById(R.id.et_description);
         spType = findViewById(R.id.spn_type);
         btnPublish = findViewById(R.id.btn_publish);
@@ -106,13 +112,15 @@ public class AddCommodityActivity extends AppCompatActivity {
                     Toast.makeText(AddCommodityActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                FirebaseUser cur_user = firebaseAuth.getCurrentUser();
+
                 //先检查合法性
                 if(CheckInput()) {
                     // Create a new user with a first and last name
                     Map<String, Object> user = new HashMap<>();
                     user.put("Title", etTitle.getText().toString());
                     user.put("Category", spType.getSelectedItem().toString());
-                    user.put("E-mail", etPhone.getText().toString());
+                    user.put("E-mail", cur_user.getEmail());
                     user.put("Description", etDescription.getText().toString());
 
                     // Add a new document with a generated ID
@@ -133,9 +141,9 @@ public class AddCommodityActivity extends AppCompatActivity {
                                 }
                             });
                 }
-                else{
-                    Toast.makeText(AddCommodityActivity.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-                }
+//                else{
+//                    Toast.makeText(AddCommodityActivity.this, "Please add some data.", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
@@ -149,14 +157,14 @@ public class AddCommodityActivity extends AppCompatActivity {
             Toast.makeText(this,"Title can not be empty!",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (type.trim().equals("请选择类别")) {
-            Toast.makeText(this,"Category not selected!",Toast.LENGTH_SHORT).show();
+        if (type.trim().equals("")) {
+            Toast.makeText(this,"Please select a category!",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (phone.trim().equals("")) {
-            Toast.makeText(this,"E-mail can not be empty!",Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        if (phone.trim().equals("")) {
+//            Toast.makeText(this,"E-mail can not be empty!",Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         if (description.trim().equals("")) {
             Toast.makeText(this,"Description can not be empty!",Toast.LENGTH_SHORT).show();
             return false;

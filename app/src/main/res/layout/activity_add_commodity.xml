@@ -91,8 +91,8 @@
         android:text="E-mail"
         android:textSize="22sp" />
 
-    <EditText
-        android:id="@+id/et_email"
+    <TextView
+        android:id="@+id/tv_email"
         android:layout_width="260dp"
         android:layout_height="40dp"
         android:layout_below="@+id/spn_type"

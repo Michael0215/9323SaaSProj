@@ -133,9 +133,9 @@ public class AddCommodityActivity extends AppCompatActivity {
                                 }
                             });
                 }
-                else{
-                    Toast.makeText(AddCommodityActivity.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-                }
+//                else{
+//                    Toast.makeText(AddCommodityActivity.this, "Please add some data.", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
@@ -149,8 +149,8 @@ public class AddCommodityActivity extends AppCompatActivity {
             Toast.makeText(this,"Title can not be empty!",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (type.trim().equals("请选择类别")) {
-            Toast.makeText(this,"Category not selected!",Toast.LENGTH_SHORT).show();
+        if (type.trim().equals("")) {
+            Toast.makeText(this,"Please select a category!",Toast.LENGTH_SHORT).show();
             return false;
         }
         if (phone.trim().equals("")) {

@@ -6,25 +6,33 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.example.comp9323_saasproj.bean.Commodity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import com.example.comp9323_saasproj.adapter.AllCommodityAdapter;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +41,9 @@ public class MainActivity extends AppCompatActivity{
     ListView lvAllCommodity;
     FirebaseFirestore firebaseFirestore;
 
+
+
+    
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
     //    private ActivityMainBinding binding;
@@ -51,11 +62,11 @@ public class MainActivity extends AppCompatActivity{
 
         final Bundle bundle = this.getIntent().getExtras();
         final TextView tvStuNumber = findViewById(R.id.tv_student_number);
-        String str = "";
-        if (bundle != null) {
-            str = "Welcome" + bundle.getString("username") + ", Hello!";
-        }
-        tvStuNumber.setText(str);
+//        String str = "";
+//        if (bundle != null) {
+//            str = "Welcome" + bundle.getString("username") + ", Hello!";
+//        }
+//        tvStuNumber.setText(str);
         final String stuNum = tvStuNumber.getText().toString();//substring(2, tvStuNumber.getText().length() - 4);
         ImageButton IbAddProduct = findViewById(R.id.ib_add_product);
 
@@ -73,6 +84,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
         firebaseFirestore = FirebaseFirestore.getInstance();
+
+
         ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,5 +158,20 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+
+        ImageButton PersonalCenter = findViewById(R.id.ib_personal_center);
+        PersonalCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PersonalCenterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 }
+
+

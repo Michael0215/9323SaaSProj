@@ -91,8 +91,8 @@
         android:text="E-mail"
         android:textSize="22sp" />
 
-    <EditText
-        android:id="@+id/et_email"
+    <TextView
+        android:id="@+id/tv_email"
         android:layout_width="260dp"
         android:layout_height="40dp"
         android:layout_below="@+id/spn_type"
@@ -139,17 +139,17 @@
         android:text="Post"
         android:textSize="25sp" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_back"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:layout_below="@+id/tv_description"-->
-<!--        android:layout_marginStart="205dp"-->
-<!--        android:layout_marginTop="291dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:background="@drawable/icon"-->
-<!--        android:text="Back"-->
-<!--        android:textSize="25sp" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btn_back"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="80dp"-->
+    <!--        android:layout_below="@+id/tv_description"-->
+    <!--        android:layout_marginStart="205dp"-->
+    <!--        android:layout_marginTop="291dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:background="@drawable/icon"-->
+    <!--        android:text="Back"-->
+    <!--        android:textSize="25sp" />-->
 
 
     <ImageButton

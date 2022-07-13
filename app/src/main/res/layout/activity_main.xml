@@ -11,7 +11,7 @@
         android:background="@color/teal_700"
         android:gravity="center_horizontal"
         android:text="Health and Medical Forum"
-        android:textColor="@color/green"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="italic" />
 
@@ -20,7 +20,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="370dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/refresh1" />
@@ -42,7 +42,7 @@
         android:layout_height="70dp"
         android:layout_below="@+id/tv_student_number"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="55dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/self_diagnosis" />
@@ -53,7 +53,7 @@
         android:layout_height="60dp"
         android:layout_below="@+id/tv_student_number"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="65dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/prevent" />
@@ -64,7 +64,7 @@
         android:layout_height="60dp"
         android:layout_below="@id/tv_student_number"
         android:layout_marginStart="225dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="65dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/cure" />
@@ -72,10 +72,10 @@
     <ImageButton
         android:id="@+id/ib_sports_good"
         android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_below="@id/tv_student_number"
         android:layout_marginStart="310dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="65dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/general" />
@@ -83,9 +83,11 @@
     <TextView
         android:id="@+id/tv_learning_use"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ib_learning_use"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00A2E8"
         android:text="Self diagnosis"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -93,9 +95,11 @@
     <TextView
         android:id="@+id/tv_electric_product"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ib_electric_product"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="125dp"
+        android:backgroundTint="#00A2E8"
         android:text="Prevention"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -103,10 +107,12 @@
     <TextView
         android:id="@+id/tv_daily_use"
         android:layout_width="80dp"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ib_daily_use"
-        android:layout_marginStart="225dp"
-        android:text="Curing"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00A2E8"
+        android:text="Cure"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -116,6 +122,7 @@
         android:layout_height="25dp"
         android:layout_below="@+id/ib_sports_good"
         android:layout_marginStart="315dp"
+        android:layout_marginTop="1dp"
         android:text="General"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -137,14 +144,14 @@
 
     <ImageButton
         android:id="@+id/ib_home_page"
-        android:layout_width="50dp"
-        android:layout_height="35dp"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
         android:layout_above="@+id/tv_home_page"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
-        android:src="@drawable/chatchat" />
+        android:src="@drawable/chat" />
     <View android:id="@+id/view2"
         android:layout_width="2dp"
         android:layout_height="60dp"
@@ -192,6 +199,7 @@
         android:layout_marginBottom="1dp"
         android:text="ChatBot"
         android:textSize="13sp"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -199,10 +207,11 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_above="@+id/view4"
-        android:layout_marginStart="182dp"
+        android:layout_marginStart="184dp"
         android:layout_marginBottom="1dp"
         android:text="Post"
         android:textSize="13sp"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -214,19 +223,23 @@
         android:layout_marginBottom="1dp"
         android:text="Personal Center"
         android:textSize="13sp"
+        android:textColor="@color/black"
         android:textStyle="bold" />
-    <View android:id="@+id/view4"
+
+    <View
+        android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/green"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/green" />
+
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_below="@+id/tv_title"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:hint="Input the keyword you want to search"
         android:maxLines="1"
         android:textColor="@color/teal_700"
@@ -237,7 +250,7 @@
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="310dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/brown"
         android:text="Go"
         android:textColor="#FFFFFF"

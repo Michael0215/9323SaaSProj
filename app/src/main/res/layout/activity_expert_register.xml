@@ -93,11 +93,11 @@
         android:layout_below="@+id/iv_photo"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#00A2E8"
         android:text="Register"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"  />
+        android:textSize="25sp" />
 
     <ImageButton
         android:id="@+id/buttonCancel"

@@ -11,5 +11,9 @@
     <color name="gray">#B3A8A8</color>
     <color name="brown">#ED5605</color>
     <color name="red">#E91E1E</color>
-
+    <color name="dark_blue">#1C2E46</color>
+    <color name="dark_blue_2">#142232</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="receive_message">#090D16</color>
 </resources>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -118,13 +119,8 @@ public class ReviewCommodityActivity extends AppCompatActivity {
             phone.setText(b.getString("phone"));
         }
         //返回
-        ImageButton tvBack = findViewById(R.id.tv_back);
-        tvBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        AppCompatImageView tvBack  = findViewById(R.id.tv_back);
+        tvBack.setOnClickListener(view -> onBackPressed());
 
 
 

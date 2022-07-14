@@ -169,7 +169,14 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
+        ImageButton LiveChat = findViewById(R.id.ib_home_page);
+        LiveChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

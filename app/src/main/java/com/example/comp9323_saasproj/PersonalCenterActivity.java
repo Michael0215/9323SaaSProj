@@ -1,6 +1,7 @@
 package com.example.comp9323_saasproj;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,14 +13,7 @@ public class PersonalCenterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center);
-
-        ImageButton btnCancel = findViewById(R.id.buttonCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        AppCompatImageView btnCancel = findViewById(R.id.buttonCancel);
+        btnCancel.setOnClickListener(view -> onBackPressed());
     }
 }

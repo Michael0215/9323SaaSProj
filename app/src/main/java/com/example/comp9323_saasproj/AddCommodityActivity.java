@@ -2,6 +2,7 @@ package com.example.comp9323_saasproj;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 
 import java.util.*;
@@ -81,7 +82,8 @@ public class AddCommodityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_commodity);
-        ImageButton btnBack = findViewById(R.id.btn_back);
+//        ImageButton btnBack = findViewById(R.id.btn_back);
+        AppCompatImageView btnBack = findViewById(R.id.btn_back);
         etPhone = findViewById(R.id.tv_email);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser cur_user = firebaseAuth.getCurrentUser();
@@ -92,12 +94,9 @@ public class AddCommodityActivity extends AppCompatActivity {
             }
         });
         //返回按钮点击事件
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
+
+
         etTitle = findViewById(R.id.et_title);
 
         etDescription = findViewById(R.id.et_description);

@@ -8,10 +8,10 @@
         android:id="@+id/tv_publish_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D6D7D7"
+        android:background="#1C2E46"
         android:gravity="center_horizontal"
         android:text="Post"
-        android:textColor="@color/brown"
+        android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="italic" />
 <!--        <TextView-->
@@ -35,13 +35,7 @@
         android:src="@drawable/refresh1" />
 
 
-    <ImageButton
-        android:id="@+id/tv_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/return2" />
+
 
     <ImageButton
         android:id="@+id/ib_my_love"
@@ -174,6 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="Submit"
+            android:backgroundTint="#1C2E46"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
@@ -193,4 +188,23 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_comment"
         android:padding="8dp" />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/tv_back"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:src="@drawable/return2" />-->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/tv_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/background_icon"
+        android:padding="6dp"
+        android:src="@drawable/ic_back"
+        />
 </RelativeLayout>

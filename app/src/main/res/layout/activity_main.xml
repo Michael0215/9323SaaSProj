@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:background="@color/teal_700"
+        android:background="#A2D5F2"
         android:gravity="center_horizontal"
         android:text="Health and Medical Forum"
         android:textColor="@color/white"

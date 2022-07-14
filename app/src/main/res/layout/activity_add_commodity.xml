@@ -9,10 +9,10 @@
         android:id="@+id/tv_publish_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D6D7D7"
+        android:background="#A2D5F2"
         android:gravity="center_horizontal"
         android:text="Post Forum"
-        android:textColor="@color/brown"
+        android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="italic" />
 
@@ -150,13 +150,21 @@
     <!--        android:background="@drawable/icon"-->
     <!--        android:text="Back"-->
     <!--        android:textSize="25sp" />-->
-
-
     <ImageButton
         android:id="@+id/btn_back"
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="29dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/return2" />
+        android:layout_marginTop="10dp"
+        android:background="#A2D5F2"
+        android:scaleType="centerCrop"
+        android:src="@drawable/return1" />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_back"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:src="@drawable/return2" />-->
 </RelativeLayout>

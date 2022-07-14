@@ -2,15 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView android:id="@+id/tv_personal_center"
-        android:text="Personal Center"
-        android:textSize="40sp"
-        android:textStyle="italic"
-        android:textColor="@color/white"
+
+    <TextView
+        android:id="@+id/tv_personal_center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="#A2D5F2"
         android:gravity="center_horizontal"
-        android:background="#A2D5F2"/>
+        android:text="Personal Center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="italic" />
     <ImageView
         android:id="@+id/iv_user_photo"
         android:layout_width="80dp"
@@ -52,16 +54,17 @@
         android:background="@color/brown"
         android:text="My information"
         android:textSize="20sp" />
+
     <ImageView
         android:id="@+id/iv_my_goods"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/iv_user_info"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/icon"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="20dp" />
+        android:src="@drawable/my_post" />
     <Button
         android:id="@+id/btn_my_goods"
         android:layout_width="290dp"
@@ -73,16 +76,17 @@
         android:layout_marginTop="10dp"
         android:background="@color/brown"
          />
+
     <ImageView
         android:id="@+id/iv_my_collection"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/iv_my_goods"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/collection1"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="20dp" />
+        android:src="@drawable/my_collection" />
     <Button
         android:id="@+id/btn_my_collection"
         android:layout_width="290dp"
@@ -94,16 +98,17 @@
         android:layout_marginTop="10dp"
         android:background="@color/brown"
         android:layout_marginLeft="80dp" />
+
     <ImageView
         android:id="@+id/iv_modify_password"
         android:layout_width="55dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_below="@+id/iv_my_collection"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/icon"
-        android:layout_marginStart="20dp"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="12dp" />
+        android:src="@drawable/change_password" />
     <Button
         android:id="@+id/btn_modify_password"
         android:layout_width="290dp"
@@ -115,16 +120,17 @@
         android:layout_marginTop="10dp"
         android:background="@color/brown"
         android:layout_marginLeft="80dp" />
+
     <ImageView
         android:id="@+id/iv_about_app"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_below="@+id/iv_modify_password"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/icon"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="20dp" />
+        android:src="@drawable/icon" />
 
     <Button
         android:id="@+id/btn_about_app"
@@ -137,16 +143,17 @@
         android:background="@color/brown"
         android:text="about us"
         android:textSize="20sp" />
+
     <ImageView
         android:id="@+id/iv_logout"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/iv_about_app"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/icon"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="20dp" />
+        android:src="@drawable/sign_out" />
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="290dp"
@@ -161,7 +168,7 @@
 
     <ImageButton
         android:id="@+id/buttonCancel"
-        android:layout_width="30dp"
+        android:layout_width="33dp"
         android:layout_height="29dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"

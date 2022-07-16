@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -19,6 +20,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.algolia.search.DefaultSearchClient;
+import com.algolia.search.SearchClient;
+import com.algolia.search.SearchIndex;
+import com.example.comp9323_saasproj.bean.Commodity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -76,13 +81,10 @@ public class AddCommodityActivity extends AppCompatActivity {
         void onResponse(int flag);
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_commodity);
-//        ImageButton btnBack = findViewById(R.id.btn_back);
         AppCompatImageView btnBack = findViewById(R.id.btn_back);
         etPhone = findViewById(R.id.tv_email);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -93,17 +95,13 @@ public class AddCommodityActivity extends AppCompatActivity {
             public void onResponse(int flag) {
             }
         });
-        //返回按钮点击事件
+
         btnBack.setOnClickListener(v -> onBackPressed());
-
-
         etTitle = findViewById(R.id.et_title);
-
         etDescription = findViewById(R.id.et_description);
         spType = findViewById(R.id.spn_type);
         btnPublish = findViewById(R.id.btn_publish);
-//        firestoreDatabase = FirebaseFirestore.getInstance();
-        //发布按钮点击事件
+
         btnPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,17 +110,17 @@ public class AddCommodityActivity extends AppCompatActivity {
                     return;
                 }
                 FirebaseUser cur_user = firebaseAuth.getCurrentUser();
-
-                //先检查合法性
+                SearchClient client =
+                        DefaultSearchClient.create("RPPCQB86AX", "9a7a77519d4ecd18b81452abdc74bc8e");
                 if(CheckInput()) {
-                    // Create a new user with a first and last name
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date = new Date(System.currentTimeMillis());
                     Map<String, Object> user = new HashMap<>();
                     user.put("Title", etTitle.getText().toString());
                     user.put("Category", spType.getSelectedItem().toString());
                     user.put("E-mail", cur_user.getEmail());
                     user.put("Description", etDescription.getText().toString());
-
-                    // Add a new document with a generated ID
+                    user.put("Time", simpleDateFormat.format(date));
                     firestoreDatabase.collection("posts")
                             .add(user)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -140,9 +138,6 @@ public class AddCommodityActivity extends AppCompatActivity {
                                 }
                             });
                 }
-//                else{
-//                    Toast.makeText(AddCommodityActivity.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-//                }
             }
         });
     }
@@ -160,10 +155,6 @@ public class AddCommodityActivity extends AppCompatActivity {
             Toast.makeText(this,"Please select a category!",Toast.LENGTH_SHORT).show();
             return false;
         }
-//        if (phone.trim().equals("")) {
-//            Toast.makeText(this,"E-mail can not be empty!",Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
         if (description.trim().equals("")) {
             Toast.makeText(this,"Description can not be empty!",Toast.LENGTH_SHORT).show();
             return false;

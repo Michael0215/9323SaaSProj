@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,12 +28,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.OrderBy;
 //import com.leaf.collegeidleapp.util.MyCollectionDbHelper;
 //import com.leaf.collegeidleapp.util.ReviewDbHelper;
 
@@ -53,9 +58,12 @@ public class ReviewCommodityActivity extends AppCompatActivity {
     TextView id, title, category, phone, description;
     ListView lvReview;
     LinkedList<Review> allReviews = new LinkedList<>();
+    Map<String, Object> comment = new HashMap<>();
     EditText etComment;
     FirebaseFirestore firestoreDatabase;
     private FirebaseAuth firebaseAuth;
+
+
 
     int flag = 0;
 
@@ -88,6 +96,68 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+    public void refreshFirebaseComments(AddCommodityActivity.FirebaseCallback callback, Bundle b) {
+        allReviews.clear();
+        CollectionReference comments = firestoreDatabase.collection("comments");
+        Query query = comments.whereEqualTo("postID", b.getString("id")).orderBy("Time", Query.Direction.DESCENDING);
+        query.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+//                                    ArrayList<String> value = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Review review = new Review();
+                                Toast.makeText(ReviewCommodityActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
+                                //set db id as commodity id
+//                                        value.add((String)document.getId());
+                                for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+                                    if (mapElement.getKey().equals("Content")){
+                                        review.setContent(mapElement.getValue().toString());
+                                    }
+                                    if (mapElement.getKey().equals("Time")){
+                                        review.setCurrentTime(mapElement.getValue().toString());
+                                    }
+                                    if (mapElement.getKey().equals("E-mail")){
+                                        review.setPhone(mapElement.getValue().toString());
+                                    }
+                                    if (mapElement.getKey().equals("postID")){
+                                        review.setPostID(mapElement.getValue().toString());
+                                    }
+                                }
+                                allReviews.add(review);
+                            }
+                            callback.onResponse(1);
+                        } else {
+                            Toast.makeText(ReviewCommodityActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
+//                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                            callback.onResponse(1);
+                        }
+                    }
+                });
+    }
+
+    public void submitFirebaseComments(AddCommodityActivity.FirebaseCallback callback,Map<String, Object> comment) {
+        firestoreDatabase.collection("comments")
+                .add(comment)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(ReviewCommodityActivity.this, "Comment success!", Toast.LENGTH_SHORT).show();
+                        callback.onResponse(1);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ReviewCommodityActivity.this, "Error adding document", Toast.LENGTH_SHORT).show();
+                        callback.onResponse(1);
+                    }
+                });
+    }
+
     public interface FirebaseCallback {
         void onResponse(int flag);
     }
@@ -103,34 +173,27 @@ public class ReviewCommodityActivity extends AppCompatActivity {
         description.setMovementMethod(ScrollingMovementMethod.getInstance());
         firestoreDatabase = FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
-
+        Bundle b = getIntent().getExtras();
         readFirebaseType(new AddCommodityActivity.FirebaseCallback() {
             @Override
             public void onResponse(int flag) {
             }
         });
-
-        Bundle b = getIntent().getExtras();
         if( b != null) {
             title.setText(b.getString("title"));
             description.setText(b.getString("description"));
             category.setText(b.getString("category"));
-            System.out.println(category);
             phone.setText(b.getString("phone"));
         }
         //返回
         AppCompatImageView tvBack  = findViewById(R.id.tv_back);
         tvBack.setOnClickListener(view -> onBackPressed());
-
-
-
         //提交！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
         etComment = findViewById(R.id.et_comment);
         lvReview = findViewById(R.id.list_comment);
         firestoreDatabase = FirebaseFirestore.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         lvReview = findViewById(R.id.list_comment);
-//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         //提交评论点击事件
         Button btnReview = findViewById(R.id.btn_submit);
         btnReview.setOnClickListener(new View.OnClickListener() {
@@ -140,93 +203,37 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                     Toast.makeText(ReviewCommodityActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 //先检查是否为空
                 if(CheckInput()) {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    Map<String, Object> comment = new HashMap<>();
+                    comment.clear();
                     comment.put("postID", b.getString("id"));
                     Date date = new Date(System.currentTimeMillis());
-//                    comment.put("E-mail",)
                     comment.put("Time", simpleDateFormat.format(date));
                     comment.put("Content", etComment.getText().toString());
                     comment.put("E-mail", firebaseAuth.getCurrentUser().getEmail());
-
-                    firestoreDatabase.collection("comments")
-                            .add(comment)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(ReviewCommodityActivity.this, "Comment success!", Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(ReviewCommodityActivity.this, MainActivity.class);
-//                                    startActivity(intent);
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(ReviewCommodityActivity.this, "Error adding document", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
+                    submitFirebaseComments(new AddCommodityActivity.FirebaseCallback(){
+                        @Override
+                        public void onResponse(int flag) {
+                        }
+                    }, comment);
                 }
             }
         });
-
         //刷新！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-        final ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
         ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 allReviews.clear();
-                firestoreDatabase.collection("comments")
-                        .whereEqualTo("postID", b.getString("id"))
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-//                                    ArrayList<String> value = new ArrayList<>();
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Review review = new Review();
-                                        Toast.makeText(ReviewCommodityActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
-                                        //set db id as commodity id
-//                                        value.add((String)document.getId());
-                                        for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
-                                            if (mapElement.getKey().equals("Content")){
-                                                review.setContent(mapElement.getValue().toString());
-                                            }
-                                            if (mapElement.getKey().equals("Time")){
-                                                review.setCurrentTime(mapElement.getValue().toString());
-                                            }
-                                            if (mapElement.getKey().equals("E-mail")){
-                                                review.setPhone(mapElement.getValue().toString());
-                                            }
-                                            if (mapElement.getKey().equals("postID")){
-                                                review.setPostID(mapElement.getValue().toString());
-                                            }
-//                                            value.add((String)mapElement.getValue().toString());
-                                        }
-//                                        review.setPhone(value.get(1));
-//                                        review.setContent(value.get(2));
-//                                        review.setCurrentTime(value.get(3));
-//                                        review.setPostID(value.get(4));
-//                                        System.out.println(value.get(1));
-//                                        System.out.println(value.get(2));
-//                                        System.out.println(value.get(3));
-//                                        System.out.println(value.get(4));
-                                        allReviews.add(review);
-//                                        value.clear();
-                                    }
-//                                    System.out.println("sssssssssssssssss"+allReviews);
-                                    adapter.setData(allReviews);
-                                    lvReview.setAdapter(adapter);
-                                } else {
-                                    Toast.makeText(ReviewCommodityActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                refreshFirebaseComments(new AddCommodityActivity.FirebaseCallback(){
+                    @Override
+                    public void onResponse(int flag) {
+                        ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                        adapter.setData(allReviews);
+                        lvReview.setAdapter(adapter);
+                    }
+                }, b);
             }
         });
     }
@@ -238,7 +245,7 @@ public class ReviewCommodityActivity extends AppCompatActivity {
     public boolean CheckInput() {
         String comment = etComment.getText().toString();
         if (comment.trim().equals("")) {
-            Toast.makeText(this,"评论内容不能为空!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"your comment can't be blanked!",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

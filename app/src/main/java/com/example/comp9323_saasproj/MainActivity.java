@@ -57,21 +57,6 @@ public class MainActivity extends AppCompatActivity{
     List<Commodity> allCommodities = new ArrayList<>();
     private Handler handler = null;
 
-//    private Handler handler =  new Handler()
-//    {
-//        @Override
-//        public  void handleMessage(Message msg)
-//        {
-//            if (msg.what == 0)
-//            {
-//                searchButton.setText( "completed");
-//                adapter.setData(allCommodities);
-//                lvAllCommodity.setAdapter(adapter);
-//            }
-//        }
-//    };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

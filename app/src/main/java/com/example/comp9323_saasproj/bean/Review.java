@@ -1,9 +1,5 @@
 package com.example.comp9323_saasproj.bean;
 
-/**
- * 评论实体类
- * @author autumn_leaf
- */
 public class Review {
 
     private String postID ;//商品项编号

@@ -1,8 +1,5 @@
 package com.example.comp9323_saasproj;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,25 +7,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.comp9323_saasproj.adapter.ReviewAdapter;
-//import com.leaf.collegeidleapp.bean.Collection;
-import com.example.comp9323_saasproj.bean.Commodity;
 import com.example.comp9323_saasproj.bean.Review;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -37,22 +29,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.core.OrderBy;
-//import com.leaf.collegeidleapp.util.MyCollectionDbHelper;
-//import com.leaf.collegeidleapp.util.ReviewDbHelper;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-/**
- * 商品信息评论/留言类
- * @author autumn_leaf
- */
 public class ReviewCommodityActivity extends AppCompatActivity {
 
     TextView id, title, category, phone, description;
@@ -62,9 +45,6 @@ public class ReviewCommodityActivity extends AppCompatActivity {
     EditText etComment;
     FirebaseFirestore firestoreDatabase;
     private FirebaseAuth firebaseAuth;
-
-
-
     int flag = 0;
 
     public void readFirebaseType(AddCommodityActivity.FirebaseCallback callback) {
@@ -107,12 +87,9 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-//                                    ArrayList<String> value = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Review review = new Review();
                                 Toast.makeText(ReviewCommodityActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
-                                //set db id as commodity id
-//                                        value.add((String)document.getId());
                                 for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
                                     if (mapElement.getKey().equals("Content")){
                                         review.setContent(mapElement.getValue().toString());
@@ -132,7 +109,6 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                             callback.onResponse(1);
                         } else {
                             Toast.makeText(ReviewCommodityActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
-//                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
                             callback.onResponse(1);
                         }
                     }
@@ -185,16 +161,14 @@ public class ReviewCommodityActivity extends AppCompatActivity {
             category.setText(b.getString("category"));
             phone.setText(b.getString("phone"));
         }
-        //返回
         AppCompatImageView tvBack  = findViewById(R.id.tv_back);
         tvBack.setOnClickListener(view -> onBackPressed());
-        //提交！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+        //Submit
         etComment = findViewById(R.id.et_comment);
         lvReview = findViewById(R.id.list_comment);
         firestoreDatabase = FirebaseFirestore.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         lvReview = findViewById(R.id.list_comment);
-        //提交评论点击事件
         Button btnReview = findViewById(R.id.btn_submit);
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,7 +177,6 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                     Toast.makeText(ReviewCommodityActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                //先检查是否为空
                 if(CheckInput()) {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     comment.clear();
@@ -220,7 +193,7 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                 }
             }
         });
-        //刷新！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+        // Refresh
         ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,10 +211,6 @@ public class ReviewCommodityActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * 检查输入评论是否为空
-     * @return true
-     */
     public boolean CheckInput() {
         String comment = etComment.getText().toString();
         if (comment.trim().equals("")) {

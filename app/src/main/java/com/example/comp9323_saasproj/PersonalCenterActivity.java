@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
 
 public class PersonalCenterActivity extends AppCompatActivity {
 

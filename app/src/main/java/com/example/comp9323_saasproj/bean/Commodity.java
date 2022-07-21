@@ -1,9 +1,5 @@
 package com.example.comp9323_saasproj.bean;
 
-/**
- * 发布的帖子的实体类
- * @author : autumn_leaf
- */
 public class Commodity {
 
     private String id;

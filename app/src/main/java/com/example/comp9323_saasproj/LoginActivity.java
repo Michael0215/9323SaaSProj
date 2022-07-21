@@ -100,9 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                             progressDialog.cancel();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
-                            //finish();
-
-                            // startActivity(new Intent(getApplicationContext(), Profile_act.class));
+                            finish();
                         }
                         else{
                             Toast.makeText(LoginActivity.this,"Login Failed\nPassword or Account Name is incrrect",Toast.LENGTH_SHORT).show();

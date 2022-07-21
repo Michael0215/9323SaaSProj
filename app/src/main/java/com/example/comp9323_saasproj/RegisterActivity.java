@@ -5,12 +5,10 @@ import androidx.annotation.NonNull;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,13 +17,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText tvStuNumber,tvStuPwd,tvStuConfirmPwd;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,18 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-
-//    private void createUserStructure(){
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-//        String name = "Your Name:";
-//        String faculty ="Your Faculty";
-//        String id = user.getUid();
-//        String mailAddress = user.getEmail();
-//        String course = "Your Course";
-//        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
-//        databaseReference.child(id).setValue(userInformation);
-//    }
-
 
     public boolean CheckInput() {
         String username = tvStuNumber.getText().toString();

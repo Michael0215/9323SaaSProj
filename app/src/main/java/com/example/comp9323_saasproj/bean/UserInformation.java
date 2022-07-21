@@ -17,7 +17,6 @@ public class UserInformation {
         this.MailAddress = MailAddress;
         this.Course = Course;
         this.type = type;
-
     }
     public String getType(){
         return type;
@@ -25,20 +24,4 @@ public class UserInformation {
     public void setType(String type) {
         this.type = type;
     }
-   /* public String getId(){
-        return Id;
-    }
-    public String getName (){
-        return Name;
-    }
-    public String getFaculty (){
-        return Faculty;
-    }
-    public String getMailAddress (){
-        return MailAddress;
-    }*/
-
-
-
-
 }

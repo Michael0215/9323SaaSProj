@@ -13,10 +13,6 @@ import com.example.comp9323_saasproj.bean.Review;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-/**
- * 评论的适配器
- * @author autumn_leaf
- */
 public class ReviewAdapter extends BaseAdapter {
 
     private Context context;
@@ -51,12 +47,6 @@ public class ReviewAdapter extends BaseAdapter {
         return position;
     }
 
-    /**
-     * 获取视图
-     * @param position 位置
-     * @param convertView 当前的视图
-     * return convertView
-     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
@@ -73,11 +63,7 @@ public class ReviewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    /**
-     * 静态ViewHolder类
-     */
     static class ViewHolder {
-
         TextView tvPhone,tvTime,tvContent;
 
         public ViewHolder(View itemView, Review review) {

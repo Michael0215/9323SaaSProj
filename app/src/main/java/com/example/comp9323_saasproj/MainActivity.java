@@ -1,5 +1,4 @@
 package com.example.comp9323_saasproj;
-import android.app.ProgressDialog;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
@@ -9,17 +8,11 @@ import android.os.Bundle;
 import com.algolia.search.DefaultSearchClient;
 import com.algolia.search.SearchClient;
 import com.algolia.search.SearchIndex;
-import com.algolia.search.exceptions.AlgoliaRuntimeException;
 import com.algolia.search.models.indexing.SearchResult;
-import com.example.comp9323_saasproj.adapter.ReviewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
 import com.example.comp9323_saasproj.bean.Commodity;
 
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
 
 import com.example.comp9323_saasproj.adapter.AllCommodityAdapter;
@@ -36,11 +29,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.nio.channels.CompletionHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -51,11 +39,8 @@ public class MainActivity extends AppCompatActivity{
 
     ListView lvAllCommodity;
     FirebaseFirestore firebaseFirestore;
-    private ProgressDialog progressDialog;
-    private DatabaseReference databaseReference;
     AllCommodityAdapter adapter;
     List<Commodity> allCommodities = new ArrayList<>();
-    private Handler handler = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +49,11 @@ public class MainActivity extends AppCompatActivity{
         lvAllCommodity = findViewById(R.id.lv_all_commodity);
         adapter = new AllCommodityAdapter(getApplicationContext());
         lvAllCommodity.setAdapter(adapter);
-        final Bundle bundle = this.getIntent().getExtras();
         firebaseFirestore = FirebaseFirestore.getInstance();
         ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         Button searchButton = findViewById(R.id.search_button);
         EditText search_bar = findViewById(R.id.search_bar);
         ImageButton IbAddProduct = findViewById(R.id.ib_add_product);
-        handler=new Handler();
 
         IbAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -37,6 +37,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONObject;
+
 public class AddCommodityActivity extends AppCompatActivity {
 
     ListView lvAllCommodity;
@@ -115,14 +117,14 @@ public class AddCommodityActivity extends AppCompatActivity {
                 if(CheckInput()) {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date date = new Date(System.currentTimeMillis());
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("Title", etTitle.getText().toString());
-                    user.put("Category", spType.getSelectedItem().toString());
-                    user.put("E-mail", cur_user.getEmail());
-                    user.put("Description", etDescription.getText().toString());
-                    user.put("Time", simpleDateFormat.format(date));
+                    Map<String, Object> post = new HashMap<>();
+                    post.put("Title", etTitle.getText().toString());
+                    post.put("Category", spType.getSelectedItem().toString());
+                    post.put("E-mail", cur_user.getEmail());
+                    post.put("Description", etDescription.getText().toString());
+                    post.put("Time", simpleDateFormat.format(date));
                     firestoreDatabase.collection("posts")
-                            .add(user)
+                            .add(post)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {

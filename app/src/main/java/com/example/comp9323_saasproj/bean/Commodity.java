@@ -6,17 +6,12 @@ package com.example.comp9323_saasproj.bean;
  */
 public class Commodity {
 
-    //编号
     private String id;
-    //标题
     private String title;
-    //类别
     private String category;
-    //联系方式
     private String phone;
-    //描述
     private String description;
-
+    private  String time;
 
     public String getId() {
         return id;
@@ -51,12 +46,17 @@ public class Commodity {
     public String getDescription() {
         return description;
     }
-//    public String getDescription() {
-//        return description;
-//    }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String description) {
+        this.time = time;
     }
 
 }

@@ -55,6 +55,42 @@ public class MainActivity extends AppCompatActivity{
         EditText search_bar = findViewById(R.id.search_bar);
         ImageButton IbAddProduct = findViewById(R.id.ib_add_product);
 
+        allCommodities.clear();
+        CollectionReference posts = firebaseFirestore.collection("posts");
+        Query query = posts.orderBy("Time", Query.Direction.DESCENDING);
+        query.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Commodity commodity = new Commodity();
+//                                Toast.makeText(MainActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
+                                for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+                                    if (mapElement.getKey().equals("Category")){
+                                        commodity.setCategory(mapElement.getValue().toString());
+                                    }
+                                    if (mapElement.getKey().equals("Description")){
+                                        commodity.setDescription(mapElement.getValue().toString());
+                                    }
+                                    if (mapElement.getKey().equals("E-mail")){
+                                        commodity.setPhone(mapElement.getValue().toString());
+                                    }
+                                    if (mapElement.getKey().equals("Title")){
+                                        commodity.setTitle(mapElement.getValue().toString());
+                                    }
+                                }
+                                commodity.setId(document.getId());
+                                allCommodities.add(commodity);
+                            }
+                            adapter.setData(allCommodities);
+                            lvAllCommodity.setAdapter(adapter);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
         IbAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +163,7 @@ public class MainActivity extends AppCompatActivity{
                     @Override
                     public void run() {
                         SearchClient client =
-                                DefaultSearchClient.create("RPPCQB86AX", "9a7a77519d4ecd18b81452abdc74bc8e");
+                                DefaultSearchClient.create("RPPCQB86AX", "c9a86b621611879d90642d4af7863937");
                         SearchIndex index = client.initIndex("posts");
                         com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query(search_bar.getText().toString())
                                 .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"));

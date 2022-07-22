@@ -46,6 +46,7 @@ public class ReviewCommodityActivity extends AppCompatActivity {
     FirebaseFirestore firestoreDatabase;
     private FirebaseAuth firebaseAuth;
     int flag = 0;
+    int createRefresh = 1;
 
     public void readFirebaseType(AddCommodityActivity.FirebaseCallback callback) {
         firestoreDatabase = FirebaseFirestore.getInstance();
@@ -89,7 +90,12 @@ public class ReviewCommodityActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Review review = new Review();
-                                Toast.makeText(ReviewCommodityActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
+                                if (createRefresh == 0){
+                                    Toast.makeText(ReviewCommodityActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
+                                }
+                                if (createRefresh == 1){
+                                    createRefresh = 0;
+                                }
                                 for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
                                     if (mapElement.getKey().equals("Content")){
                                         review.setContent(mapElement.getValue().toString());
@@ -163,6 +169,17 @@ public class ReviewCommodityActivity extends AppCompatActivity {
         }
         AppCompatImageView tvBack  = findViewById(R.id.tv_back);
         tvBack.setOnClickListener(view -> onBackPressed());
+
+        allReviews.clear();
+        refreshFirebaseComments(new AddCommodityActivity.FirebaseCallback(){
+            @Override
+            public void onResponse(int flag) {
+                ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                adapter.setData(allReviews);
+                lvReview.setAdapter(adapter);
+            }
+        }, b);
+
         //Submit
         etComment = findViewById(R.id.et_comment);
         lvReview = findViewById(R.id.list_comment);

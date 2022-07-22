@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,7 +43,20 @@ public class RegisterActivity extends AppCompatActivity {
         tvStuConfirmPwd = findViewById(R.id.et_confirm_password);
 
         Button register = findViewById(R.id.buttonRegister);
-        ImageButton cancel = findViewById(R.id.buttonCancel);
+        ImageView cancel = findViewById(R.id.buttonCancel);
+
+        TextView BackToLogin = findViewById(R.id.BackToLogin);
+
+        BackToLogin.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.BackToLogin) {
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
 

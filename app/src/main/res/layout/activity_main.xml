@@ -123,7 +123,7 @@
         android:layout_below="@+id/ib_sports_good"
         android:layout_marginStart="315dp"
         android:layout_marginTop="1dp"
-        android:text="General"
+        android:text="Notices"
         android:textSize="15sp"
         android:textStyle="bold" />
 

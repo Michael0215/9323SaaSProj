@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity{
         Button searchButton = findViewById(R.id.search_button);
         EditText search_bar = findViewById(R.id.search_bar);
         ImageButton IbAddProduct = findViewById(R.id.ib_add_product);
+        ImageButton ibPrevention = findViewById(R.id.ib_electric_product);
+        ImageButton ibCure = findViewById(R.id.ib_daily_use);
+        ImageButton ibNotices = findViewById(R.id.ib_sports_good);
 
         allCommodities.clear();
         CollectionReference posts = firebaseFirestore.collection("posts");
@@ -167,6 +170,154 @@ public class MainActivity extends AppCompatActivity{
                         SearchIndex index = client.initIndex("posts");
                         com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query(search_bar.getText().toString())
                                 .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"));
+                        allCommodities.clear();
+                        SearchResult res = index.search(query);
+                        List hits = res.getHits();
+                        for (int i = 0; i < hits.size(); i++){
+                            Commodity commodity = new Commodity();
+                            Map<String, Object> info =  (HashMap)hits.get(i);
+                            for (Map.Entry<String, Object> mapElement : info.entrySet()){
+                                if (mapElement.getKey().equals("Category")){
+                                    commodity.setCategory(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("Description")){
+                                    commodity.setDescription(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("E-mail")){
+                                    commodity.setPhone(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("Title")){
+                                    commodity.setTitle(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("objectID")){
+                                    commodity.setId(mapElement.getValue().toString());
+                                }
+                            }
+                            allCommodities.add(commodity);
+                        }
+                    }
+                });
+                request.start();
+                while(request.isAlive()){}
+                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
+                adapter.setData(allCommodities);
+                lvAllCommodity.setAdapter(adapter);
+            }
+        });
+
+        ibPrevention.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Thread request = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        SearchClient client =
+                                DefaultSearchClient.create("RPPCQB86AX", "c9a86b621611879d90642d4af7863937");
+                        SearchIndex index = client.initIndex("posts");
+                        com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query("Prevention")
+                                .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"))
+                                .setRestrictSearchableAttributes(Arrays.asList(
+                                        "Category"
+                                ));
+                        allCommodities.clear();
+                        SearchResult res = index.search(query);
+                        List hits = res.getHits();
+                        for (int i = 0; i < hits.size(); i++){
+                            Commodity commodity = new Commodity();
+                            Map<String, Object> info =  (HashMap)hits.get(i);
+                            for (Map.Entry<String, Object> mapElement : info.entrySet()){
+                                if (mapElement.getKey().equals("Category")){
+                                    commodity.setCategory(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("Description")){
+                                    commodity.setDescription(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("E-mail")){
+                                    commodity.setPhone(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("Title")){
+                                    commodity.setTitle(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("objectID")){
+                                    commodity.setId(mapElement.getValue().toString());
+                                }
+                            }
+                            allCommodities.add(commodity);
+                        }
+                    }
+                });
+                request.start();
+                while(request.isAlive()){}
+                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
+                adapter.setData(allCommodities);
+                lvAllCommodity.setAdapter(adapter);
+            }
+        });
+
+        ibCure.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Thread request = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        SearchClient client =
+                                DefaultSearchClient.create("RPPCQB86AX", "c9a86b621611879d90642d4af7863937");
+                        SearchIndex index = client.initIndex("posts");
+                        com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query("Cure")
+                                .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"))
+                                .setRestrictSearchableAttributes(Arrays.asList(
+                                        "Category"
+                                ));
+
+                        allCommodities.clear();
+                        SearchResult res = index.search(query);
+                        List hits = res.getHits();
+                        for (int i = 0; i < hits.size(); i++){
+                            Commodity commodity = new Commodity();
+                            Map<String, Object> info =  (HashMap)hits.get(i);
+                            for (Map.Entry<String, Object> mapElement : info.entrySet()){
+                                if (mapElement.getKey().equals("Category")){
+                                    commodity.setCategory(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("Description")){
+                                    commodity.setDescription(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("E-mail")){
+                                    commodity.setPhone(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("Title")){
+                                    commodity.setTitle(mapElement.getValue().toString());
+                                }
+                                if (mapElement.getKey().equals("objectID")){
+                                    commodity.setId(mapElement.getValue().toString());
+                                }
+                            }
+                            allCommodities.add(commodity);
+                        }
+                    }
+                });
+                request.start();
+                while(request.isAlive()){}
+                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
+                adapter.setData(allCommodities);
+                lvAllCommodity.setAdapter(adapter);
+            }
+        });
+
+        ibNotices.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Thread request = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        SearchClient client =
+                                DefaultSearchClient.create("RPPCQB86AX", "c9a86b621611879d90642d4af7863937");
+                        SearchIndex index = client.initIndex("posts");
+                        com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query("Notices")
+                                .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"))
+                                .setRestrictSearchableAttributes(Arrays.asList(
+                                        "Category"
+                                ));
                         allCommodities.clear();
                         SearchResult res = index.search(query);
                         List hits = res.getHits();

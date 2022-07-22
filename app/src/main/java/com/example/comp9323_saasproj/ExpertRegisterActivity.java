@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,12 +56,24 @@ public class ExpertRegisterActivity extends AppCompatActivity {
         });
 
 
-        ImageButton btnCancel = findViewById(R.id.buttonCancel);
+        ImageView btnCancel = findViewById(R.id.buttonCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        TextView BackToLogin = findViewById(R.id.BackToLogin);
+        BackToLogin.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.BackToLogin) {
+                    Intent intent = new Intent(ExpertRegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

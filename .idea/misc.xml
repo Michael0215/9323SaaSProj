@@ -3,40 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_add_commodity.xml" value="0.25" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_main.xml" value="0.17806484295845998" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.33" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_review_commodity.xml" value="0.22" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/activity_user_type.xml" value="0.25181159420289856" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/layout_all_commodity.xml" value="0.17806484295845998" />
-        <entry key="..\:/9323SaaSProj/app/src/main/res/layout/layout_commodity_review.xml" value="0.36614583333333334" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_add_commodity.xml" value="0.2690048217773438" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.4284927368164063" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3626800537109375" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2527404785156251" />
-        <entry key="app/src/main/res/layout/activity_review_commodity.xml" value="0.15743174833409918" />
-        <entry key="app/src/main/res/layout/activity_type.xml" value="0.11195542046605876" />
-        <entry key="app/src/main/res/layout/activity_user_chat.xml" value="0.10005065856129686" />
-        <entry key="app/src/main/res/layout/activity_user_main_page.xml" value="0.4287109375" />
-        <entry key="app/src/main/res/layout/activity_user_page.xml" value="0.11676798378926039" />
-        <entry key="app/src/main/res/layout/bottonshape.xml" value="0.13551165146909827" />
-        <entry key="app/src/main/res/layout/bottonstyle.xml" value="0.13500506585612967" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.18847198486328126" />
-        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.15729483282674772" />
-        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.15729483282674772" />
-        <entry key="app/src/main/res/layout/item_container_sent_message.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/layout_all_commodity.xml" value="0.4091400146484375" />
-        <entry key="app/src/main/res/layout/layout_commodity_review.xml" value="0.15579710144927536" />
-        <entry key="app/src/main/res/layout/mainactivity_login_or_regiester.xml" value="0.4174652099609375" />
-        <entry key="app/src/main/res/layout/register_page.xml" value="0.1" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/drawable-v24/background_input.xml" value="0.1" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/drawable/background_received_message.xml" value="0.166" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_add_commodity.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_expert_register.xml" value="0.11145833333333334" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_live_chat.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_personal_center.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_register.xml" value="0.20572916666666666" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_review_commodity.xml" value="0.4" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_user_chat.xml" value="0.264" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/activity_user_type.xml" value="0.15520833333333334" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/item_container_received_message.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/item_container_sent_message.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/item_container_user.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/layout_all_commodity.xml" value="0.18070652173913043" />
+        <entry key="..\:/StudioProjects/9323SaaSProj/app/src/main/res/layout/layout_commodity_review.xml" value="0.18070652173913043" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

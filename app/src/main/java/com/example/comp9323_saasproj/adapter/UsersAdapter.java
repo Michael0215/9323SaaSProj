@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comp9323_saasproj.databinding.ItemContainerUserBinding;
+import com.example.comp9323_saasproj.listeners.UserListener;
 import com.example.comp9323_saasproj.models.User;
 
 import java.util.List;
@@ -15,8 +16,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     private final List<User> users;
 
-    public UsersAdapter(List<User> users) {
+    private final UserListener userListener;
+
+    public UsersAdapter(List<User> users, UserListener userListener) {
         this.users = users;
+        this.userListener = userListener;
     }
 
     @NonNull
@@ -51,6 +55,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
         void setUserData(User user){
             binding.textEmail.setText(user.email);
+            binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
         }
     }
 }

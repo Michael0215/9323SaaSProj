@@ -9,7 +9,7 @@
         android:layout_height="50dp"
         android:background="#1C2E46"
         android:gravity="center_horizontal"
-        android:text="Personal Center"
+        android:text="Account"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="italic" />
@@ -52,7 +52,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="5dp"
         android:background="@color/brown"
-        android:text="My information"
+        android:text="My profile"
         android:textSize="20sp" />
 
     <ImageView
@@ -70,7 +70,7 @@
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginStart="80dp"
-        android:text="My Post"
+        android:text="My Posts"
         android:textSize="20sp"
         android:layout_below="@+id/btn_user_info"
         android:layout_marginTop="10dp"
@@ -114,7 +114,7 @@
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginStart="80dp"
-        android:text="change password"
+        android:text="update password"
         android:textSize="20sp"
         android:layout_below="@+id/btn_my_collection"
         android:layout_marginTop="10dp"

@@ -20,6 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".LiveChatActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".PersonalCenterActivity"

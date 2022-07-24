@@ -35,12 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         preferenceManager = new PreferenceManager(getApplicationContext());
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
+
         setContentView(R.layout.activity_login);
         firebaseAuth=FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -49,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewSignUp = findViewById(R.id.textViewSignUp);
         preferenceManager = new PreferenceManager(getApplicationContext());
-
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,17 +104,15 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful( )) {
-                            //start the profile act
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            // startActivities(new Intent(getApplicationContext(),Profile_act.class));
                             Toast.makeText(LoginActivity.this, "Login Successfully\n Now you can edit your information", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
                             preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
-                            preferenceManager.putString(Constants.KEY_USER_ID, user.getUid());
+//                            preferenceManager.putString(Constants.KEY_USER_ID, user.getUid());
+                            preferenceManager.putString(Constants.KEY_EMAIL, user.getEmail());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-//                            finish();
                         }
                         else{
                             Toast.makeText(LoginActivity.this,"Login Failed\nPassword or Account Name is incrrect",Toast.LENGTH_SHORT).show();

@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity{
                                         commodity.setId(document.getId());
                                         allCommodities.add(commodity);
                                     }
+                                    AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
                                     adapter.setData(allCommodities);
                                     lvAllCommodity.setAdapter(adapter);
                                 } else {

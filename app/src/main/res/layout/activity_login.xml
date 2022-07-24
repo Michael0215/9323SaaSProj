@@ -29,29 +29,30 @@
     <!--        android:textSize="40sp"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
     <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="354dp"
+        android:layout_height="212dp"
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/health"
         android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginStart="4dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_below="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        >
+        app:layout_constraintTop_toBottomOf="@id/title">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +60,8 @@
             android:text="Welcome Back!"
             android:textColor="@color/primary_text"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +69,8 @@
             android:text="Login to continue"
             android:textColor="@color/secondary_text"
             android:textSize="12sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
@@ -78,11 +81,11 @@
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            android:textSize="13sp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
-            />
+            android:textSize="13sp" />
+
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
@@ -93,22 +96,23 @@
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:inputType="textPassword"
-            android:textSize="13sp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
-            />
+            android:textSize="13sp" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:text="sign in"
             android:backgroundTint="@color/dark_blue"
+            android:text="sign in"
             android:textColor="@color/white"
             android:textSize="13sp"
             android:textStyle="bold"
-            app:cornerRadius="8dp"/>
+            app:cornerRadius="8dp" />
+
         <TextView
             android:id="@+id/textViewSignUp"
             android:layout_width="wrap_content"
@@ -117,7 +121,7 @@
             android:text="@string/don_t_have_an_account_sign_up_here"
             android:textColor="@color/dark_blue"
             android:textSize="13sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

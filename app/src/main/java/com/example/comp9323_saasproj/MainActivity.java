@@ -45,11 +45,13 @@ public class MainActivity extends AppCompatActivity{
     FirebaseFirestore firebaseFirestore;
     AllCommodityAdapter adapter;
     List<Commodity> allCommodities = new ArrayList<>();
+    private @NonNull ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         preferenceManager = new PreferenceManager(getApplicationContext());
         if(!preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
             preferenceManager.clear();
@@ -57,7 +59,8 @@ public class MainActivity extends AppCompatActivity{
             startActivity(intent);
             finish();
         }
-        setContentView(R.layout.activity_main);
+        setContentView(binding.getRoot());
+        setListeners();
         lvAllCommodity = findViewById(R.id.lv_all_commodity);
         adapter = new AllCommodityAdapter(getApplicationContext());
         lvAllCommodity.setAdapter(adapter);
@@ -375,14 +378,19 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        ImageButton LiveChat = findViewById(R.id.ib_home_page);
-        LiveChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UserChatActivity.class);
-                startActivity(intent);
-            }
-        });
+//        ImageButton LiveChat = findViewById(R.id.ib_home_page);
+//        LiveChat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, UserChatActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+    }
+
+    private void setListeners(){
+        binding.ibHomePage.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), UserChatActivity.class)));
     }
 }
 

@@ -35,8 +35,6 @@
         android:src="@drawable/refresh1" />
 
 
-
-
     <ImageButton
         android:id="@+id/ib_my_love"
         android:layout_width="45dp"

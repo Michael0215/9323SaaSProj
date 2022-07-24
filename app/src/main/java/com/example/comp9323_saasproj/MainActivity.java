@@ -9,6 +9,9 @@ import com.algolia.search.DefaultSearchClient;
 import com.algolia.search.SearchClient;
 import com.algolia.search.SearchIndex;
 import com.algolia.search.models.indexing.SearchResult;
+import com.example.comp9323_saasproj.databinding.ActivityMainBinding;
+import com.example.comp9323_saasproj.utilities.Constants;
+import com.example.comp9323_saasproj.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.example.comp9323_saasproj.bean.Commodity;
@@ -37,14 +40,23 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
 
+
     ListView lvAllCommodity;
     FirebaseFirestore firebaseFirestore;
     AllCommodityAdapter adapter;
     List<Commodity> allCommodities = new ArrayList<>();
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        if(!preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
+            preferenceManager.clear();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         setContentView(R.layout.activity_main);
         lvAllCommodity = findViewById(R.id.lv_all_commodity);
         adapter = new AllCommodityAdapter(getApplicationContext());
@@ -359,6 +371,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, PersonalCenterActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -18,14 +18,14 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final List<ChatMessage> chatMessages;
-    private final String senderId;
+    private final String senderEmail;
 
     public static final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
 
-    public ChatAdapter(List<ChatMessage> chatMessages, String senderId) {
+    public ChatAdapter(List<ChatMessage> chatMessages, String senderEmail) {
         this.chatMessages = chatMessages;
-        this.senderId = senderId;
+        this.senderEmail = senderEmail;
     }
 
     @NonNull
@@ -54,7 +54,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position) == VIEW_TYPE_SENT) {
             ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
-        }else{}
+        }else{
+            ((ReceivedMessageViewHolder) holder).setData(chatMessages.get(position));
+        }
     }
 
     @Override
@@ -64,7 +66,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if (chatMessages.get(position).senderId.equals(senderId)){
+        if (chatMessages.get(position).senderEmail.equals(senderEmail)){
             return VIEW_TYPE_SENT;
         }else{
             return VIEW_TYPE_RECEIVED;
@@ -94,6 +96,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             binding = itemContainerReceivedMessageBinding;
         }
         void setData(ChatMessage chatMessage){
+            System.out.println("Receive Message: " + chatMessage.message);
             binding.textMessage.setText(chatMessage.message);
             binding.textDateTime.setText(chatMessage.dateTime);
         }

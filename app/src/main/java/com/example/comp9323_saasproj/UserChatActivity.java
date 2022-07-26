@@ -55,6 +55,7 @@ public class UserChatActivity extends AppCompatActivity implements UserListener 
                             }
                             User user = new User();
                             user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+                            user.type = queryDocumentSnapshot.getString("Type");
                             users.add(user);
                         }
                         if(users.size() > 0){

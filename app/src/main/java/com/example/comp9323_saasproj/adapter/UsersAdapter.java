@@ -55,6 +55,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
         void setUserData(User user){
             binding.textEmail.setText(user.email);
+            binding.textType.setText(user.type);
             binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
         }
     }

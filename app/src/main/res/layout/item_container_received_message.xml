@@ -30,7 +30,7 @@
         android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.75"/>
+        app:layout_constraintWidth_percent="0.7"/>
 
 
     <TextView

@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 public class UserTypeActivity extends AppCompatActivity {
 
-
     private Button btnStudentstaff;
     private Button btnExpert;
     private TextView btnCancel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +44,6 @@ public class UserTypeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserTypeActivity.this, ExpertRegisterActivity.class);
                 startActivity(intent);
-
             }
         });
     }

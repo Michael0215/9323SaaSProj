@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +26,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText tvStuNumber,tvStuPwd,tvStuConfirmPwd;
+    EditText tvUsername,tvPassword,tvConfirmPassword;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -38,15 +37,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        tvStuNumber = findViewById(R.id.et_username);
-        tvStuPwd = findViewById(R.id.et_password);
-        tvStuConfirmPwd = findViewById(R.id.et_confirm_password);
+        tvUsername = findViewById(R.id.et_username);
+        tvPassword = findViewById(R.id.et_password);
+        tvConfirmPassword = findViewById(R.id.et_confirm_password);
 
         Button register = findViewById(R.id.buttonRegister);
         ImageView cancel = findViewById(R.id.buttonCancel);
-
         TextView BackToLogin = findViewById(R.id.BackToLogin);
-
         BackToLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,16 +75,17 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
     private void registerUser(){
         FirebaseFirestore firestoreDatabase;
         firestoreDatabase = FirebaseFirestore.getInstance();
-        String email = tvStuNumber.getText().toString().trim();
-        String password= tvStuPwd.getText().toString().trim();
+        String email = tvUsername.getText().toString().trim();
+        String password= tvPassword.getText().toString().trim();
 
         Map<String, Object> user = new HashMap<>();
         user.put("E-mail", email);
         user.put("Password", password);
-        user.put("Type", "common");
+        user.put("Type", "Common");
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email,password)
@@ -122,9 +120,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean CheckInput() {
-        String username = tvStuNumber.getText().toString();
-        String password = tvStuPwd.getText().toString();
-        String confirm_password = tvStuConfirmPwd.getText().toString();
+        String username = tvUsername.getText().toString();
+        String password = tvPassword.getText().toString();
+        String confirm_password = tvConfirmPassword.getText().toString();
         if(username.trim().equals("")) {
             Toast.makeText(RegisterActivity.this,"User name cannot be empty!",Toast.LENGTH_SHORT).show();
             return false;

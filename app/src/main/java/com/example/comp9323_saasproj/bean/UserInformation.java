@@ -7,9 +7,9 @@ public class UserInformation {
     public String Faculty;
     public String MailAddress;
     public String Course;
-    public UserInformation(){
 
-    }
+    public UserInformation(){}
+
     public UserInformation(String Id,String Name,String Faculty,String MailAddress,String Course, String type){
         this.Id = Id;
         this.Name=Name;
@@ -18,6 +18,7 @@ public class UserInformation {
         this.Course = Course;
         this.type = type;
     }
+
     public String getType(){
         return type;
     }

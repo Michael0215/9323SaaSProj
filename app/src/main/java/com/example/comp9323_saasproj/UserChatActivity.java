@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.comp9323_saasproj.adapter.UsersAdapter;
-import com.example.comp9323_saasproj.databinding.ActivityMainBinding;
 import com.example.comp9323_saasproj.databinding.ActivityUserChatBinding;
 import com.example.comp9323_saasproj.listeners.UserListener;
 import com.example.comp9323_saasproj.models.User;
@@ -16,7 +15,6 @@ import com.example.comp9323_saasproj.utilities.PreferenceManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 

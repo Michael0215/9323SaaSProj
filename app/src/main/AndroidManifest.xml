@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.comp9323_saasproj" >
+    package="com.example.comp9323_saasproj">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,7 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.COMP9323_SaaSProj"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".ReviewPostCommonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddPostExpertActivity"
+            android:exported="false" />
         <activity
             android:name=".ChatMainActivity"
             android:exported="false" />
@@ -26,7 +32,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".PersonalCenterActivity"
+            android:name=".AccountActivity"
             android:exported="false" />
         <activity
             android:name=".ExpertRegisterActivity"
@@ -35,10 +41,10 @@
             android:name=".UserTypeActivity"
             android:exported="false" />
         <activity
-            android:name=".ReviewCommodityActivity"
+            android:name=".ReviewPostActivity"
             android:exported="false" />
         <activity
-            android:name=".AddCommodityActivity"
+            android:name=".AddPostActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -48,7 +54,7 @@
             android:name=".LoginActivity"
             android:exported="true"
             android:label="SaaS HEALTH"
-            android:theme="@style/Theme.COMP9323_SaaSProj.NoActionBar" >
+            android:theme="@style/Theme.COMP9323_SaaSProj.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +64,7 @@
 
         <service
             android:name=".firebase.MessageService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

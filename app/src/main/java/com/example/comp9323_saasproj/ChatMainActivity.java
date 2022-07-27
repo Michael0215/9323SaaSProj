@@ -9,13 +9,11 @@ import android.widget.Toast;
 
 import com.example.comp9323_saasproj.adapter.RecentConversationsAdapter;
 import com.example.comp9323_saasproj.databinding.ActivityChatMainBinding;
-import com.example.comp9323_saasproj.databinding.ActivityMainBinding;
 import com.example.comp9323_saasproj.listeners.ConversionListener;
 import com.example.comp9323_saasproj.models.ChatMessage;
 import com.example.comp9323_saasproj.models.User;
 import com.example.comp9323_saasproj.utilities.Constants;
 import com.example.comp9323_saasproj.utilities.PreferenceManager;
-import com.google.common.base.MoreObjects;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -90,10 +88,8 @@ public class ChatMainActivity extends AppCompatActivity implements ConversionLis
                     chatMessage.receiverEmail = receiverEmail;
                     if(preferenceManager.getString(Constants.KEY_EMAIL).equals(senderEmail)){
                         chatMessage.conversionEmail = documentChange.getDocument().getString(Constants.KEY_RECEIVER_EMAIL);
-//                        System.out.println("conversionEmail: " + chatMessage.conversionEmail);
                     }else{
                         chatMessage.conversionEmail = documentChange.getDocument().getString(Constants.KEY_SENDER_EMAIL);
-//                        System.out.println("conversionEmail: " + chatMessage.conversionEmail);
                     }
                     chatMessage.message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
                     chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/tv_personal_center"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="#1C2E46"
         android:gravity="center_horizontal"
         android:text="Account"
         android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="italic" />
+        android:textSize="30sp"/>
+
     <ImageView
         android:id="@+id/iv_user_photo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@color/white"
         android:layout_below="@id/tv_personal_center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/personal_information"
-        android:scaleType="centerCrop"/>
+        android:layout_marginTop="60dp"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        android:src="@drawable/personal_information" />
     <TextView
         android:id="@+id/tv_student_number"
         android:layout_width="match_parent"
@@ -33,16 +34,17 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:textStyle="italic"/>
+
     <ImageView
         android:id="@+id/iv_user_info"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/tv_student_number"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/personal_information"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
-        android:layout_marginLeft="20dp" />
+        android:src="@drawable/personal_information" />
 
     <Button
         android:id="@+id/btn_user_info"
@@ -65,17 +67,17 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/my_post" />
+
     <Button
         android:id="@+id/btn_my_goods"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginStart="80dp"
-        android:text="My Posts"
-        android:textSize="20sp"
         android:layout_below="@+id/btn_user_info"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
         android:background="@color/brown"
-         />
+        android:text="My Posts"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/iv_my_collection"
@@ -87,17 +89,18 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/my_collection" />
+
     <Button
         android:id="@+id/btn_my_collection"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginStart="80dp"
-        android:text="collection"
-        android:textSize="20sp"
         android:layout_below="@+id/btn_my_goods"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
         android:background="@color/brown"
-        android:layout_marginLeft="80dp" />
+        android:text="collection"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/iv_modify_password"
@@ -109,17 +112,18 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/change_password" />
+
     <Button
         android:id="@+id/btn_modify_password"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginStart="80dp"
-        android:text="update password"
-        android:textSize="20sp"
         android:layout_below="@+id/btn_my_collection"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
         android:background="@color/brown"
-        android:layout_marginLeft="80dp" />
+        android:text="update password"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/iv_about_app"
@@ -154,17 +158,18 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sign_out" />
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginStart="80dp"
-        android:text="sign out"
-        android:textSize="20sp"
         android:layout_below="@+id/btn_about_app"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
         android:background="@color/brown"
-        android:layout_marginLeft="80dp" />
+        android:text="sign out"
+        android:textSize="20sp" />
 
 <!--    <ImageButton-->
 <!--        android:id="@+id/buttonCancel"-->
@@ -180,10 +185,10 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/background_icon"
+        android:layout_marginTop="5dp"
         android:padding="6dp"
         android:src="@drawable/ic_back"
+        app:tint="@color/white"
         />
 
 </RelativeLayout>

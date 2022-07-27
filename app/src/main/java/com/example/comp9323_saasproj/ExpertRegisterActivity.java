@@ -29,8 +29,8 @@ import java.util.Map;
 
 public class ExpertRegisterActivity extends AppCompatActivity {
 
-    ImageButton ivPhoto;
-    EditText tvStuNumber,tvStuPwd,tvStuConfirmPwd;
+    private ImageButton ivPhoto;
+    private EditText tvUsername,tvPassword,tvConfirmPassword;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -39,9 +39,9 @@ public class ExpertRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expert_register);
 
-        tvStuNumber = findViewById(R.id.et_username);
-        tvStuPwd = findViewById(R.id.et_password);
-        tvStuConfirmPwd = findViewById(R.id.et_confirm_password);
+        tvUsername = findViewById(R.id.et_username);
+        tvPassword = findViewById(R.id.et_password);
+        tvConfirmPassword = findViewById(R.id.et_confirm_password);
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -54,7 +54,6 @@ public class ExpertRegisterActivity extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
-
 
         ImageView btnCancel = findViewById(R.id.buttonCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -88,18 +87,17 @@ public class ExpertRegisterActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void registerUser(){
         FirebaseFirestore firestoreDatabase;
         firestoreDatabase = FirebaseFirestore.getInstance();
-        String email = tvStuNumber.getText().toString().trim();
-        String password= tvStuPwd.getText().toString().trim();
+        String email = tvUsername.getText().toString().trim();
+        String password= tvPassword.getText().toString().trim();
         Map<String, Object> user = new HashMap<>();
         user.put("E-mail", email);
         user.put("Password", password);
-        user.put("Type", "expert");
+        user.put("Type", "Expert");
 
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
@@ -135,9 +133,9 @@ public class ExpertRegisterActivity extends AppCompatActivity {
     }
 
     public boolean CheckInput() {
-        String username = tvStuNumber.getText().toString();
-        String password = tvStuPwd.getText().toString();
-        String confirm_password = tvStuConfirmPwd.getText().toString();
+        String username = tvUsername.getText().toString();
+        String password = tvPassword.getText().toString();
+        String confirm_password = tvConfirmPassword.getText().toString();
         if(username.trim().equals("")) {
             Toast.makeText(ExpertRegisterActivity.this,"User name cannot be empty!",Toast.LENGTH_SHORT).show();
             return false;

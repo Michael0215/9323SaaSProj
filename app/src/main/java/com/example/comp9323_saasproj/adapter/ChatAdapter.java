@@ -76,7 +76,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     static class SentMessageViewHolder extends RecyclerView.ViewHolder{
         private final ItemContainerSentMessageBinding binding;
 
-
         SentMessageViewHolder(ItemContainerSentMessageBinding itemContainerSentMessageBinding){
             super(itemContainerSentMessageBinding.getRoot());
             binding = itemContainerSentMessageBinding;
@@ -96,7 +95,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             binding = itemContainerReceivedMessageBinding;
         }
         void setData(ChatMessage chatMessage){
-            System.out.println("Receive Message: " + chatMessage.message);
             binding.textMessage.setText(chatMessage.message);
             binding.textDateTime.setText(chatMessage.dateTime);
         }

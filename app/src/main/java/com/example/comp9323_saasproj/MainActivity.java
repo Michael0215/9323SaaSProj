@@ -14,11 +14,14 @@ import com.example.comp9323_saasproj.utilities.Constants;
 import com.example.comp9323_saasproj.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.example.comp9323_saasproj.bean.Commodity;
+import com.example.comp9323_saasproj.bean.Post;
 
 import android.view.View;
 
-import com.example.comp9323_saasproj.adapter.AllCommodityAdapter;
+import com.example.comp9323_saasproj.adapter.AllPostAdapter;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -40,13 +43,13 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
 
-
-    ListView lvAllCommodity;
-    FirebaseFirestore firebaseFirestore;
-    AllCommodityAdapter adapter;
-    List<Commodity> allCommodities = new ArrayList<>();
+    private ListView lvAllPost;
+    private FirebaseFirestore firebaseFirestore;
+    private AllPostAdapter adapter;
+    private List<Post> allPosts = new ArrayList<>();
     private @NonNull ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +64,19 @@ public class MainActivity extends AppCompatActivity{
         }
         setContentView(binding.getRoot());
         setListeners();
-        lvAllCommodity = findViewById(R.id.lv_all_commodity);
-        adapter = new AllCommodityAdapter(getApplicationContext());
-        lvAllCommodity.setAdapter(adapter);
+        lvAllPost = findViewById(R.id.lv_all_post);
+        adapter = new AllPostAdapter(getApplicationContext());
+        lvAllPost.setAdapter(adapter);
         firebaseFirestore = FirebaseFirestore.getInstance();
         ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         Button searchButton = findViewById(R.id.search_button);
         EditText search_bar = findViewById(R.id.search_bar);
-        ImageButton IbAddProduct = findViewById(R.id.ib_add_product);
-        ImageButton ibPrevention = findViewById(R.id.ib_electric_product);
-        ImageButton ibCure = findViewById(R.id.ib_daily_use);
-        ImageButton ibNotices = findViewById(R.id.ib_sports_good);
+        ImageButton IbAddPost = findViewById(R.id.ib_add_post);
+        ImageButton ibPrevention = findViewById(R.id.ib_prevention);
+        ImageButton ibCure = findViewById(R.id.ib_cure);
+        ImageButton ibAnnouncements = findViewById(R.id.ib_announcements);
 
-        allCommodities.clear();
+        allPosts.clear();
         CollectionReference posts = firebaseFirestore.collection("posts");
         Query query = posts.orderBy("Time", Query.Direction.DESCENDING);
         query.get()
@@ -82,45 +85,72 @@ public class MainActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Commodity commodity = new Commodity();
-//                                Toast.makeText(MainActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
+                                Post post = new Post();
                                 for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
                                     if (mapElement.getKey().equals("Category")){
-                                        commodity.setCategory(mapElement.getValue().toString());
+                                        post.setCategory(mapElement.getValue().toString());
                                     }
                                     if (mapElement.getKey().equals("Description")){
-                                        commodity.setDescription(mapElement.getValue().toString());
+                                        post.setDescription(mapElement.getValue().toString());
                                     }
                                     if (mapElement.getKey().equals("E-mail")){
-                                        commodity.setPhone(mapElement.getValue().toString());
+                                        post.setEmail(mapElement.getValue().toString());
                                     }
                                     if (mapElement.getKey().equals("Title")){
-                                        commodity.setTitle(mapElement.getValue().toString());
+                                        post.setTitle(mapElement.getValue().toString());
                                     }
                                 }
-                                commodity.setId(document.getId());
-                                allCommodities.add(commodity);
+                                post.setId(document.getId());
+                                allPosts.add(post);
                             }
-                            adapter.setData(allCommodities);
-                            lvAllCommodity.setAdapter(adapter);
+                            adapter.setData(allPosts);
+                            lvAllPost.setAdapter(adapter);
                         } else {
                             Toast.makeText(MainActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
-        IbAddProduct.setOnClickListener(new View.OnClickListener() {
+        IbAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddCommodityActivity.class);
-                startActivity(intent);
+                firebaseFirestore = FirebaseFirestore.getInstance();
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser cur_user = firebaseAuth.getCurrentUser();
+                String email = cur_user.getEmail();
+                firebaseFirestore.collection("users")
+                        .whereEqualTo("E-mail", email)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+                                            if (mapElement.getKey().equals("Type")){
+                                                if(mapElement.getValue().toString().equals("Expert")){
+                                                    Intent intent = new Intent(MainActivity.this, AddPostExpertActivity.class);
+                                                    startActivity(intent);
+                                                }else{
+                                                    Intent intent = new Intent(MainActivity.this, AddPostActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    Toast.makeText(MainActivity.this, "Retrieving type failed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                allCommodities.clear();
+                allPosts.clear();
                 CollectionReference posts = firebaseFirestore.collection("posts");
                 Query query = posts.orderBy("Time", Query.Direction.DESCENDING);
                 query.get()
@@ -129,28 +159,28 @@ public class MainActivity extends AppCompatActivity{
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Commodity commodity = new Commodity();
+                                        Post post = new Post();
                                         Toast.makeText(MainActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
                                         for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
                                             if (mapElement.getKey().equals("Category")){
-                                                commodity.setCategory(mapElement.getValue().toString());
+                                                post.setCategory(mapElement.getValue().toString());
                                             }
                                             if (mapElement.getKey().equals("Description")){
-                                                commodity.setDescription(mapElement.getValue().toString());
+                                                post.setDescription(mapElement.getValue().toString());
                                             }
                                             if (mapElement.getKey().equals("E-mail")){
-                                                commodity.setPhone(mapElement.getValue().toString());
+                                                post.setEmail(mapElement.getValue().toString());
                                             }
                                             if (mapElement.getKey().equals("Title")){
-                                                commodity.setTitle(mapElement.getValue().toString());
+                                                post.setTitle(mapElement.getValue().toString());
                                             }
                                         }
-                                        commodity.setId(document.getId());
-                                        allCommodities.add(commodity);
+                                        post.setId(document.getId());
+                                        allPosts.add(post);
                                     }
-                                    AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
-                                    adapter.setData(allCommodities);
-                                    lvAllCommodity.setAdapter(adapter);
+                                    AllPostAdapter adapter = new AllPostAdapter(getApplicationContext());
+                                    adapter.setData(allPosts);
+                                    lvAllPost.setAdapter(adapter);
                                 } else {
                                     Toast.makeText(MainActivity.this, "Error getting documents.", Toast.LENGTH_SHORT).show();
                                 }
@@ -159,19 +189,49 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        lvAllCommodity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvAllPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Commodity commodity = (Commodity) lvAllCommodity.getAdapter().getItem(position);
+                Post post = (Post) lvAllPost.getAdapter().getItem(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("id", commodity.getId());
-                bundle.putString("title",commodity.getTitle());
-                bundle.putString("description",commodity.getDescription());
-                bundle.putString("phone",commodity.getPhone());
-                bundle.putString("category", commodity.getCategory());
-                Intent intent = new Intent(MainActivity.this, ReviewCommodityActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                bundle.putString("id", post.getId());
+                bundle.putString("title",post.getTitle());
+                bundle.putString("description",post.getDescription());
+                bundle.putString("email",post.getEmail());
+                bundle.putString("category", post.getCategory());
+
+                firebaseFirestore = FirebaseFirestore.getInstance();
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser cur_user = firebaseAuth.getCurrentUser();
+                String email = cur_user.getEmail();
+                firebaseFirestore.collection("users")
+                        .whereEqualTo("E-mail", email)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        for (Map.Entry<String, Object> mapElement : document.getData().entrySet()){
+                                            if (mapElement.getKey().equals("Type")){
+                                                if(mapElement.getValue().toString().equals("Expert")){
+                                                    Intent intent = new Intent(MainActivity.this, ReviewPostActivity.class);
+                                                    intent.putExtras(bundle);
+                                                    startActivity(intent);
+                                                }else{
+                                                    Intent intent = new Intent(MainActivity.this, ReviewPostCommonActivity.class);
+                                                    intent.putExtras(bundle);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    Toast.makeText(MainActivity.this, "Retrieving type failed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 
@@ -186,38 +246,38 @@ public class MainActivity extends AppCompatActivity{
                         SearchIndex index = client.initIndex("posts");
                         com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query(search_bar.getText().toString())
                                 .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"));
-                        allCommodities.clear();
+                        allPosts.clear();
                         SearchResult res = index.search(query);
                         List hits = res.getHits();
                         for (int i = 0; i < hits.size(); i++){
-                            Commodity commodity = new Commodity();
+                            Post post = new Post();
                             Map<String, Object> info =  (HashMap)hits.get(i);
                             for (Map.Entry<String, Object> mapElement : info.entrySet()){
                                 if (mapElement.getKey().equals("Category")){
-                                    commodity.setCategory(mapElement.getValue().toString());
+                                    post.setCategory(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Description")){
-                                    commodity.setDescription(mapElement.getValue().toString());
+                                    post.setDescription(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("E-mail")){
-                                    commodity.setPhone(mapElement.getValue().toString());
+                                    post.setEmail(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Title")){
-                                    commodity.setTitle(mapElement.getValue().toString());
+                                    post.setTitle(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("objectID")){
-                                    commodity.setId(mapElement.getValue().toString());
+                                    post.setId(mapElement.getValue().toString());
                                 }
                             }
-                            allCommodities.add(commodity);
+                            allPosts.add(post);
                         }
                     }
                 });
                 request.start();
                 while(request.isAlive()){}
-                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
-                adapter.setData(allCommodities);
-                lvAllCommodity.setAdapter(adapter);
+                AllPostAdapter adapter = new AllPostAdapter(getApplicationContext());
+                adapter.setData(allPosts);
+                lvAllPost.setAdapter(adapter);
             }
         });
 
@@ -235,38 +295,38 @@ public class MainActivity extends AppCompatActivity{
                                 .setRestrictSearchableAttributes(Arrays.asList(
                                         "Category"
                                 ));
-                        allCommodities.clear();
+                        allPosts.clear();
                         SearchResult res = index.search(query);
                         List hits = res.getHits();
                         for (int i = 0; i < hits.size(); i++){
-                            Commodity commodity = new Commodity();
+                            Post post = new Post();
                             Map<String, Object> info =  (HashMap)hits.get(i);
                             for (Map.Entry<String, Object> mapElement : info.entrySet()){
                                 if (mapElement.getKey().equals("Category")){
-                                    commodity.setCategory(mapElement.getValue().toString());
+                                    post.setCategory(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Description")){
-                                    commodity.setDescription(mapElement.getValue().toString());
+                                    post.setDescription(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("E-mail")){
-                                    commodity.setPhone(mapElement.getValue().toString());
+                                    post.setEmail(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Title")){
-                                    commodity.setTitle(mapElement.getValue().toString());
+                                    post.setTitle(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("objectID")){
-                                    commodity.setId(mapElement.getValue().toString());
+                                    post.setId(mapElement.getValue().toString());
                                 }
                             }
-                            allCommodities.add(commodity);
+                            allPosts.add(post);
                         }
                     }
                 });
                 request.start();
                 while(request.isAlive()){}
-                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
-                adapter.setData(allCommodities);
-                lvAllCommodity.setAdapter(adapter);
+                AllPostAdapter adapter = new AllPostAdapter(getApplicationContext());
+                adapter.setData(allPosts);
+                lvAllPost.setAdapter(adapter);
             }
         });
 
@@ -285,42 +345,42 @@ public class MainActivity extends AppCompatActivity{
                                         "Category"
                                 ));
 
-                        allCommodities.clear();
+                        allPosts.clear();
                         SearchResult res = index.search(query);
                         List hits = res.getHits();
                         for (int i = 0; i < hits.size(); i++){
-                            Commodity commodity = new Commodity();
+                            Post post = new Post();
                             Map<String, Object> info =  (HashMap)hits.get(i);
                             for (Map.Entry<String, Object> mapElement : info.entrySet()){
                                 if (mapElement.getKey().equals("Category")){
-                                    commodity.setCategory(mapElement.getValue().toString());
+                                    post.setCategory(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Description")){
-                                    commodity.setDescription(mapElement.getValue().toString());
+                                    post.setDescription(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("E-mail")){
-                                    commodity.setPhone(mapElement.getValue().toString());
+                                    post.setEmail(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Title")){
-                                    commodity.setTitle(mapElement.getValue().toString());
+                                    post.setTitle(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("objectID")){
-                                    commodity.setId(mapElement.getValue().toString());
+                                    post.setId(mapElement.getValue().toString());
                                 }
                             }
-                            allCommodities.add(commodity);
+                            allPosts.add(post);
                         }
                     }
                 });
                 request.start();
                 while(request.isAlive()){}
-                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
-                adapter.setData(allCommodities);
-                lvAllCommodity.setAdapter(adapter);
+                AllPostAdapter adapter = new AllPostAdapter(getApplicationContext());
+                adapter.setData(allPosts);
+                lvAllPost.setAdapter(adapter);
             }
         });
 
-        ibNotices.setOnClickListener(new ImageButton.OnClickListener() {
+        ibAnnouncements.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Thread request = new Thread(new Runnable(){
@@ -329,51 +389,51 @@ public class MainActivity extends AppCompatActivity{
                         SearchClient client =
                                 DefaultSearchClient.create("RPPCQB86AX", "c9a86b621611879d90642d4af7863937");
                         SearchIndex index = client.initIndex("posts");
-                        com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query("Notices")
+                        com.algolia.search.models.indexing.Query query = new com.algolia.search.models.indexing.Query("Announcements")
                                 .setAttributesToRetrieve(Arrays.asList("objectID", "Title", "Description", "E-mail", "Category"))
                                 .setRestrictSearchableAttributes(Arrays.asList(
                                         "Category"
                                 ));
-                        allCommodities.clear();
+                        allPosts.clear();
                         SearchResult res = index.search(query);
                         List hits = res.getHits();
                         for (int i = 0; i < hits.size(); i++){
-                            Commodity commodity = new Commodity();
+                            Post post = new Post();
                             Map<String, Object> info =  (HashMap)hits.get(i);
                             for (Map.Entry<String, Object> mapElement : info.entrySet()){
                                 if (mapElement.getKey().equals("Category")){
-                                    commodity.setCategory(mapElement.getValue().toString());
+                                    post.setCategory(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Description")){
-                                    commodity.setDescription(mapElement.getValue().toString());
+                                    post.setDescription(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("E-mail")){
-                                    commodity.setPhone(mapElement.getValue().toString());
+                                    post.setEmail(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("Title")){
-                                    commodity.setTitle(mapElement.getValue().toString());
+                                    post.setTitle(mapElement.getValue().toString());
                                 }
                                 if (mapElement.getKey().equals("objectID")){
-                                    commodity.setId(mapElement.getValue().toString());
+                                    post.setId(mapElement.getValue().toString());
                                 }
                             }
-                            allCommodities.add(commodity);
+                            allPosts.add(post);
                         }
                     }
                 });
                 request.start();
                 while(request.isAlive()){}
-                AllCommodityAdapter adapter = new AllCommodityAdapter(getApplicationContext());
-                adapter.setData(allCommodities);
-                lvAllCommodity.setAdapter(adapter);
+                AllPostAdapter adapter = new AllPostAdapter(getApplicationContext());
+                adapter.setData(allPosts);
+                lvAllPost.setAdapter(adapter);
             }
         });
 
-        ImageButton PersonalCenter = findViewById(R.id.ib_personal_center);
-        PersonalCenter.setOnClickListener(new View.OnClickListener() {
+        ImageButton Account = findViewById(R.id.ib_account);
+        Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PersonalCenterActivity.class);
+                Intent intent = new Intent(MainActivity.this, AccountActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -381,7 +441,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void setListeners(){
-        binding.ibHomePage.setOnClickListener(v ->
+        binding.ibLiveChat.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), ChatMainActivity.class)));
     }
 }

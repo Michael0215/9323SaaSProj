@@ -8,37 +8,37 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.comp9323_saasproj.R;
-import com.example.comp9323_saasproj.bean.Commodity;
+import com.example.comp9323_saasproj.bean.Post;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AllCommodityAdapter extends BaseAdapter {
+public class AllPostAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<Commodity> commodities = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
     HashMap<Integer,View> location = new HashMap<>();
 
-    public AllCommodityAdapter(Context context) {
+    public AllPostAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
     }
 
-    public void setData(List<Commodity> commodities) {
-        this.commodities = commodities;
+    public void setData(List<Post> posts) {
+        this.posts = posts;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return commodities.size();
+        return posts.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return commodities.get(position);
+        return posts.get(position);
     }
 
     @Override
@@ -50,9 +50,9 @@ public class AllCommodityAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if(location.get(position) == null){
-            convertView = layoutInflater.inflate(R.layout.layout_all_commodity,null);
-            Commodity commodity = (Commodity) getItem(position);
-            holder = new ViewHolder(convertView,commodity);
+            convertView = layoutInflater.inflate(R.layout.item_container_post,null);
+            Post post = (Post) getItem(position);
+            holder = new ViewHolder(convertView,post);
             location.put(position,convertView);
             convertView.setTag(holder);
         }else{
@@ -63,16 +63,16 @@ public class AllCommodityAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView tvTitle,tvType,tvDescription,tvPhone;
+        TextView tvTitle,tvType,tvDescription,tvEmail;
 
-        public ViewHolder(View itemView,Commodity commodity) {
+        public ViewHolder(View itemView, Post post) {
             tvTitle = itemView.findViewById(R.id.tv_name);
             tvType = itemView.findViewById(R.id.tv_type);
-            tvPhone = itemView.findViewById(R.id.tv_phone);
+            tvEmail = itemView.findViewById(R.id.tv_email);
             tvDescription = itemView.findViewById(R.id.tv_description);
-            tvTitle.setText(commodity.getTitle());
-            tvPhone.setText(commodity.getPhone());
-            tvType.setText(commodity.getCategory());
+            tvTitle.setText(post.getTitle());
+            tvEmail.setText(post.getEmail());
+            tvType.setText(post.getCategory());
         }
     }
 }

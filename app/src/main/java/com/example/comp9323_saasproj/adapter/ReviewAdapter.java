@@ -21,7 +21,6 @@ public class ReviewAdapter extends BaseAdapter {
     private LinkedList<Review> reviews = new LinkedList<>();
     HashMap<Integer,View> location = new HashMap<>();
 
-
     public ReviewAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
@@ -51,7 +50,7 @@ public class ReviewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if(location.get(position) == null) {
-            convertView = layoutInflater.inflate(R.layout.layout_commodity_review,null);
+            convertView = layoutInflater.inflate(R.layout.item_container_comment,null);
             Review review = (Review) getItem(position);
             holder = new ViewHolder(convertView,review);
             location.put(position,convertView);
@@ -64,13 +63,13 @@ public class ReviewAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView tvPhone,tvTime,tvContent;
+        TextView tvEmail,tvTime,tvContent;
 
         public ViewHolder(View itemView, Review review) {
-            tvPhone = itemView.findViewById(R.id.tv_number);
-            tvTime = itemView.findViewById(R.id.tv_current_time);
+            tvEmail = itemView.findViewById(R.id.tv_email);
+            tvTime = itemView.findViewById(R.id.tv_time);
             tvContent = itemView.findViewById(R.id.tv_comment);
-            tvPhone.setText(review.getPhone());
+            tvEmail.setText(review.getEmail());
             tvTime.setText(review.getCurrentTime());
             tvContent.setText(review.getContent());
         }

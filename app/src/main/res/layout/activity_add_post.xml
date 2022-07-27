@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
     <TextView
@@ -13,10 +12,9 @@
         android:layout_height="wrap_content"
         android:background="#1C2E46"
         android:gravity="center_horizontal"
-        android:text="New Post"
+        android:text="New Question"
         android:textColor="@color/white"
-        android:textSize="40sp"
-        android:textStyle="italic" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -30,12 +28,12 @@
 
     <EditText
         android:id="@+id/et_title"
-        android:layout_width="260dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_below="@+id/tv_publish_info"
-        android:layout_marginStart="105dp"
+        android:layout_marginStart="125dp"
         android:layout_marginTop="20dp"
-        android:hint="Edit title"
+        android:hint="Enter title"
         android:maxLines="1"
         android:textColor="@color/teal_700"
         android:textSize="18sp" />
@@ -50,41 +48,18 @@
         android:text="Category"
         android:textSize="22sp" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_price"-->
-    <!--        android:layout_width="80dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_below="@+id/tv_type"-->
-    <!--        android:layout_marginStart="25dp"-->
-    <!--        android:layout_marginLeft="25dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:text="编号"-->
-    <!--        android:textSize="22sp" />-->
-    <!--    <EditText-->
-    <!--        android:id="@+id/et_price"-->
-    <!--        android:layout_width="260dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_below="@+id/spn_type"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:layout_marginStart="105dp"-->
-    <!--        android:textColor="@color/teal_700"-->
-    <!--        android:inputType="numberDecimal"-->
-    <!--        android:maxLines="1"-->
-    <!--        android:hint="请输入你喜欢的编号"-->
-    <!--        android:textSize="18sp"-->
-    <!--        android:layout_marginLeft="105dp" />-->
-
     <Spinner
         android:id="@+id/spn_type"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_below="@+id/et_title"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="21dp"
-        android:entries="@array/product_type" />
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="18dp"
+        android:entries="@array/product_type"
+        android:textColor="@color/teal_700"/>
 
     <TextView
-        android:id="@+id/tv_phone"
+        android:id="@+id/tv_email_title"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@+id/tv_type"
@@ -95,12 +70,11 @@
 
     <TextView
         android:id="@+id/tv_email"
-        android:layout_width="260dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_below="@+id/spn_type"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="20dp"
-        android:hint="Please enter your E-mail"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="25dp"
         android:maxLines="1"
         android:textColor="@color/teal_700"
         android:textSize="18sp" />
@@ -109,7 +83,7 @@
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/tv_phone"
+        android:layout_below="@+id/tv_email_title"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:text="Description"
@@ -124,9 +98,9 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:gravity="top|start"
-        android:hint="Please enter a brief description of your problems"
+        android:hint="Enter your concerns..."
         android:textColor="@color/teal_700"
-        android:textSize="25sp"
+        android:textSize="20sp"
         tools:ignore="RtlCompat" />
 
     <Button
@@ -135,7 +109,7 @@
         android:layout_height="80dp"
         android:layout_below="@+id/tv_description"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="291dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#1C2E46"
         android:text="Post"
@@ -147,10 +121,10 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/background_icon"
+        android:layout_marginTop="5dp"
         android:padding="6dp"
         android:src="@drawable/ic_back"
+        app:tint="@color/white"
         />
 
 </RelativeLayout>

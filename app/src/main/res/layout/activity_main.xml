@@ -10,10 +10,9 @@
         android:layout_marginBottom="4dp"
         android:background="#1C2E46"
         android:gravity="center_horizontal"
-        android:text="Health and Medical Forum"
+        android:text="H&amp;S Forum"
         android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="italic" />
+        android:textSize="30sp"/>
 
     <ImageButton
         android:id="@+id/tv_refresh"
@@ -26,7 +25,7 @@
         android:src="@drawable/refresh1" />
 
     <TextView
-        android:id="@+id/tv_student_number"
+        android:id="@+id/tv_blank_supporter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
@@ -37,10 +36,10 @@
         android:textStyle="italic" />
 
     <ImageButton
-        android:id="@+id/ib_learning_use"
+        android:id="@+id/ib_self_diagnosis"
         android:layout_width="60dp"
         android:layout_height="70dp"
-        android:layout_below="@+id/tv_student_number"
+        android:layout_below="@+id/tv_blank_supporter"
         android:layout_marginStart="28dp"
         android:layout_marginTop="53dp"
         android:background="@color/white"
@@ -48,43 +47,43 @@
         android:src="@drawable/self_diagnosis" />
 
     <ImageButton
-        android:id="@+id/ib_electric_product"
+        android:id="@+id/ib_prevention"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/tv_student_number"
+        android:layout_below="@+id/tv_blank_supporter"
         android:layout_marginStart="129dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="63dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/prevent" />
 
     <ImageButton
-        android:id="@+id/ib_daily_use"
+        android:id="@+id/ib_cure"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_below="@id/tv_student_number"
+        android:layout_below="@id/tv_blank_supporter"
         android:layout_marginStart="212dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="63dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/cure" />
 
     <ImageButton
-        android:id="@+id/ib_sports_good"
+        android:id="@+id/ib_announcements"
         android:layout_width="60dp"
         android:layout_height="70dp"
-        android:layout_below="@id/tv_student_number"
+        android:layout_below="@id/tv_blank_supporter"
         android:layout_marginStart="300dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="63dp"
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/general" />
 
     <TextView
-        android:id="@+id/tv_learning_use"
+        android:id="@+id/tv_self_diagnosis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ib_learning_use"
+        android:layout_below="@+id/ib_self_diagnosis"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#00A2E8"
@@ -93,10 +92,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_electric_product"
+        android:id="@+id/tv_prevetion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ib_electric_product"
+        android:layout_below="@+id/ib_prevention"
         android:layout_marginStart="123dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#00A2E8"
@@ -105,10 +104,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_daily_use"
+        android:id="@+id/tv_cure"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ib_daily_use"
+        android:layout_below="@+id/ib_cure"
         android:layout_marginStart="221dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#00A2E8"
@@ -117,10 +116,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_sports_good"
+        android:id="@+id/tv_announcements"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_below="@+id/ib_sports_good"
+        android:layout_below="@+id/ib_announcements"
         android:layout_marginStart="276dp"
         android:layout_marginTop="1dp"
         android:text="Announcements"
@@ -128,11 +127,11 @@
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/lv_all_commodity"
+        android:id="@+id/lv_all_post"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/view2"
-        android:layout_below="@+id/tv_electric_product"
+        android:layout_below="@+id/tv_prevetion"
         android:layout_marginTop="4dp" />
 
     <View android:id="@+id/view1"
@@ -143,10 +142,10 @@
         android:layout_marginTop="70dp"/>
 
     <ImageButton
-        android:id="@+id/ib_home_page"
+        android:id="@+id/ib_live_chat"
         android:layout_width="35dp"
         android:layout_height="30dp"
-        android:layout_above="@+id/tv_home_page"
+        android:layout_above="@+id/tv_live_chat"
         android:layout_marginStart="45dp"
         android:layout_marginTop="5dp"
         android:background="@color/white"
@@ -161,10 +160,10 @@
         android:layout_marginLeft="130dp" />
 
     <ImageButton
-        android:id="@+id/ib_add_product"
+        android:id="@+id/ib_add_post"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_above="@+id/tv_add_product"
+        android:layout_above="@+id/tv_add_post"
         android:layout_marginStart="183dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="-3dp"
@@ -173,13 +172,13 @@
         android:src="@drawable/post" />
 
     <TextView
-        android:id="@+id/tv_add_product"
+        android:id="@+id/tv_add_post"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_above="@+id/view4"
         android:layout_marginStart="188dp"
         android:layout_marginBottom="1dp"
-        android:text="Post"
+        android:text="Q&amp;A"
         android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold" />
@@ -193,10 +192,10 @@
         android:layout_marginLeft="270dp" />
 
     <ImageButton
-        android:id="@+id/ib_personal_center"
+        android:id="@+id/ib_account"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_above="@+id/tv_personal_center"
+        android:layout_above="@+id/tv_account"
         android:layout_marginStart="318dp"
         android:layout_marginLeft="320dp"
         android:layout_marginTop="5dp"
@@ -205,7 +204,7 @@
         android:src="@drawable/personal_information" />
 
     <TextView
-        android:id="@+id/tv_home_page"
+        android:id="@+id/tv_live_chat"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_above="@+id/view4"
@@ -217,7 +216,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_personal_center"
+        android:id="@+id/tv_account"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_above="@+id/view4"

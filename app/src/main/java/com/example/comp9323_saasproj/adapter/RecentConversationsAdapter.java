@@ -54,7 +54,6 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
         }
 
         void setData(ChatMessage chatMessage) {
-            System.out.println("conversionEmail: " + chatMessage.conversionEmail);
             binding.textEmail.setText(chatMessage.conversionEmail);
             binding.textRecentMessage.setText(chatMessage.message);
             binding.getRoot().setOnClickListener(v -> {

@@ -2,18 +2,17 @@ package com.example.comp9323_saasproj.bean;
 
 public class Review {
 
-    private String postID ;//商品项编号
-    private String phone;//用户账号
-    private String currentTime;//当前时间
-    private String content;//评论内容
+    private String postID ;
+    private String email;
+    private String currentTime;
+    private String content;
 
-
-    public String getPhone() {
-        return phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCurrentTime() {

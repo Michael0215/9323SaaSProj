@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class ReviewPostActivity extends AppCompatActivity {
 
-    private TextView title, category, email, description;
+    private TextView title, category, email, description, blank;
     private ListView lvReview;
     private LinkedList<Review> allReviews = new LinkedList<>();
     private Map<String, Object> comment = new HashMap<>();
@@ -60,7 +60,6 @@ public class ReviewPostActivity extends AppCompatActivity {
                                 Review review = new Review();
                                 if (createRefresh == 0){
                                     Toast.makeText(ReviewPostActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
-
                                 }
                                 if (createRefresh == 1){
                                     createRefresh = 0;
@@ -122,11 +121,12 @@ public class ReviewPostActivity extends AppCompatActivity {
         email = findViewById(R.id.et_email);
         description = findViewById(R.id.et_description);
         description.setMovementMethod(ScrollingMovementMethod.getInstance());
+        blank = findViewById(R.id.tv_no_comments_now);
         firestoreDatabase = FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
         Bundle b = getIntent().getExtras();
 
-        if( b != null) {
+        if(b != null) {
             title.setText(b.getString("title"));
             description.setText(b.getString("description"));
             category.setText(b.getString("category"));
@@ -140,6 +140,11 @@ public class ReviewPostActivity extends AppCompatActivity {
             @Override
             public void onResponse(int flag) {
                 ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                if(allReviews != null && !allReviews.isEmpty()){
+                    blank.setVisibility(View.INVISIBLE);
+                } else {
+                    blank.setVisibility(View.VISIBLE);
+                }
                 adapter.setData(allReviews);
                 lvReview.setAdapter(adapter);
             }
@@ -173,6 +178,11 @@ public class ReviewPostActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(int flag) {
                             ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                            if(allReviews != null && !allReviews.isEmpty()){
+                                blank.setVisibility(View.INVISIBLE);
+                            } else {
+                                blank.setVisibility(View.VISIBLE);
+                            }
                             adapter.setData(allReviews);
                             lvReview.setAdapter(adapter);
                         }
@@ -190,6 +200,11 @@ public class ReviewPostActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(int flag) {
                         ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                        if(allReviews != null && !allReviews.isEmpty()){
+                            blank.setVisibility(View.INVISIBLE);
+                        } else {
+                            blank.setVisibility(View.VISIBLE);
+                        }
                         adapter.setData(allReviews);
                         lvReview.setAdapter(adapter);
                     }

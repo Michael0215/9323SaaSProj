@@ -47,7 +47,7 @@ public class LiveChatActivity extends AppCompatActivity {
         init();
         listenMessages();
     }
-
+    
     private void sendMessage() {
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_EMAIL, preferenceManager.getString(Constants.KEY_EMAIL));

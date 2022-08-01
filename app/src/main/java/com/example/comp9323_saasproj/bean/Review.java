@@ -2,6 +2,8 @@ package com.example.comp9323_saasproj.bean;
 
 public class Review {
 
+    // The class of a comment. It has 4 attributes and corresponding set and get functions.
+
     private String postID ;
     private String email;
     private String currentTime;

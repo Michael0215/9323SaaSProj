@@ -17,20 +17,23 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
+    // Adapter for live chat page.
     private final List<ChatMessage> chatMessages;
     private final String senderEmail;
-
     public static final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
 
+    // Constructor
     public ChatAdapter(List<ChatMessage> chatMessages, String senderEmail) {
         this.chatMessages = chatMessages;
         this.senderEmail = senderEmail;
     }
 
+    // Override several functions to get values we actually want.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Create SentMessageViewHolder or ReceivedMessageViewHolder according to value of flag variable.
         if (viewType == VIEW_TYPE_SENT) {
             return new SentMessageViewHolder(
                     ItemContainerSentMessageBinding.inflate(
@@ -50,6 +53,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
+    // Set data to fill layout with real values.
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position) == VIEW_TYPE_SENT) {
@@ -64,6 +68,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         return chatMessages.size();
     }
 
+    // Judge the type of current message item.
     @Override
     public int getItemViewType(int position) {
         if (chatMessages.get(position).senderEmail.equals(senderEmail)){
@@ -73,9 +78,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
+    // Extends ViewHolder in Java library to meet our requirements.
     static class SentMessageViewHolder extends RecyclerView.ViewHolder{
         private final ItemContainerSentMessageBinding binding;
 
+        // Implement view holder for sent messages.
         SentMessageViewHolder(ItemContainerSentMessageBinding itemContainerSentMessageBinding){
             super(itemContainerSentMessageBinding.getRoot());
             binding = itemContainerSentMessageBinding;
@@ -90,6 +97,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
         private final ItemContainerReceivedMessageBinding binding;
 
+        // Implement view holder for received messages.
         ReceivedMessageViewHolder(ItemContainerReceivedMessageBinding itemContainerReceivedMessageBinding){
             super(itemContainerReceivedMessageBinding.getRoot());
             binding = itemContainerReceivedMessageBinding;

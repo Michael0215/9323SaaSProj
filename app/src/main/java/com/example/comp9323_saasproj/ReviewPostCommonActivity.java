@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class ReviewPostCommonActivity extends AppCompatActivity {
 
-    TextView title, category, email, description;
+    TextView title, category, email, description, blank;
     ListView lvReview;
     LinkedList<Review> allReviews = new LinkedList<>();
     Map<String, Object> comment = new HashMap<>();
@@ -134,6 +134,7 @@ public class ReviewPostCommonActivity extends AppCompatActivity {
         email = findViewById(R.id.et_email);
         description = findViewById(R.id.et_description);
         description.setMovementMethod(ScrollingMovementMethod.getInstance());
+        blank = findViewById(R.id.tv_no_comments_now);
         firestoreDatabase = FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
         Bundle b = getIntent().getExtras();
@@ -142,7 +143,7 @@ public class ReviewPostCommonActivity extends AppCompatActivity {
             public void onResponse(int flag) {
             }
         });
-        if( b != null) {
+        if(b != null) {
             title.setText(b.getString("title"));
             description.setText(b.getString("description"));
             category.setText(b.getString("category"));
@@ -156,6 +157,11 @@ public class ReviewPostCommonActivity extends AppCompatActivity {
             @Override
             public void onResponse(int flag) {
                 ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                if(allReviews != null && !allReviews.isEmpty()){
+                    blank.setVisibility(View.INVISIBLE);
+                } else {
+                    blank.setVisibility(View.VISIBLE);
+                }
                 adapter.setData(allReviews);
                 lvReview.setAdapter(adapter);
             }
@@ -171,6 +177,11 @@ public class ReviewPostCommonActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(int flag) {
                         ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                        if(allReviews != null && !allReviews.isEmpty()){
+                            blank.setVisibility(View.INVISIBLE);
+                        } else {
+                            blank.setVisibility(View.VISIBLE);
+                        }
                         adapter.setData(allReviews);
                         lvReview.setAdapter(adapter);
                     }

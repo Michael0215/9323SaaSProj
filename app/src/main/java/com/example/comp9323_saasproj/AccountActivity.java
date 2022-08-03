@@ -14,6 +14,12 @@ public class AccountActivity extends AppCompatActivity {
     private @NonNull ActivityAccountBinding binding;
     private PreferenceManager preferenceManager;
 
+    // Activity for 'Account' page.
+    /* Because this is not the core feature of our project,
+    we did not implement functions like 'My Profile', 'Update Password', etc.
+    Only 'Sign Out' and 'Back' button is available.
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

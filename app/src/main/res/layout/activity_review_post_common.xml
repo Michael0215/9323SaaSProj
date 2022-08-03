@@ -14,6 +14,17 @@
         android:textColor="@color/white"
         android:textSize="30sp"/>
 
+    <TextView
+        android:id="@+id/tv_no_comments_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="510dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="NO COMMENTS"
+        android:textColor="@color/gray"
+        android:textSize="30sp"/>
+
     <ImageButton
         android:id="@+id/tv_refresh"
         android:layout_width="30dp"

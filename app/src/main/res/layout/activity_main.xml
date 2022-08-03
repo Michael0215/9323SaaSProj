@@ -178,7 +178,7 @@
         android:layout_above="@+id/view4"
         android:layout_marginStart="188dp"
         android:layout_marginBottom="1dp"
-        android:text="Q&amp;A"
+        android:text="Post"
         android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold" />

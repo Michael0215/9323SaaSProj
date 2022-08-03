@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("E-mail", email);
         user.put("Password", password);
-        user.put("Type", "Common");
+        user.put("Type", "Student/Staff");
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
 

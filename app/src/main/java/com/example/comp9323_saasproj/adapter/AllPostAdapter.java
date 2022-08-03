@@ -16,21 +16,25 @@ import java.util.List;
 
 public class AllPostAdapter extends BaseAdapter {
 
+    // Adapter for showing all posts on the homepage.
     private Context context;
     private LayoutInflater layoutInflater;
     private List<Post> posts = new ArrayList<>();
     HashMap<Integer,View> location = new HashMap<>();
 
+    // Constructor
     public AllPostAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
     }
 
+    // Implement of setData function.
     public void setData(List<Post> posts) {
         this.posts = posts;
         notifyDataSetChanged();
     }
 
+    // Override several functions to get values we actually want.
     @Override
     public int getCount() {
         return posts.size();
@@ -46,6 +50,7 @@ public class AllPostAdapter extends BaseAdapter {
         return position;
     }
 
+    // Get corresponding post for each View.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
@@ -62,9 +67,9 @@ public class AllPostAdapter extends BaseAdapter {
         return convertView;
     }
 
+    // The class ViewHolder, fill containers with real values.
     static class ViewHolder {
         TextView tvTitle,tvType,tvDescription,tvEmail;
-
         public ViewHolder(View itemView, Post post) {
             tvTitle = itemView.findViewById(R.id.tv_name);
             tvType = itemView.findViewById(R.id.tv_type);

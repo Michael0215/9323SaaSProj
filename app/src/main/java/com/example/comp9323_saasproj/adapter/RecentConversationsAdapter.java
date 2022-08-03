@@ -15,14 +15,17 @@ import java.util.List;
 
 public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConversationsAdapter.ConversionViewHolder>{
 
+    // Adapter for recent chat page.
     private final List<ChatMessage> chatMessages;
     private final ConversionListener conversionListener;
 
+    // Constructor
     public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener) {
         this.chatMessages = chatMessages;
         this.conversionListener = conversionListener;
     }
 
+    // Create view for this page.
     @NonNull
     @Override
     public ConversionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,6 +38,7 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
         );
     }
 
+    // Set data to fill containers with real values.
     @Override
     public void onBindViewHolder(@NonNull ConversionViewHolder holder, int position) {
         holder.setData(chatMessages.get(position));
@@ -45,6 +49,7 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
         return chatMessages.size();
     }
 
+    // Extend basic ViewHolder, overwrite setData function to set what we want.
     class ConversionViewHolder extends RecyclerView.ViewHolder {
         ItemContainerRecentConversionBinding binding;
 

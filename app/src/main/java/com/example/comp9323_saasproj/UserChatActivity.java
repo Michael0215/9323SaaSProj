@@ -20,6 +20,7 @@ import java.util.List;
 
 public class UserChatActivity extends AppCompatActivity implements UserListener {
 
+    // This activity lists all available users you can chat with. And you can choose one of them to chat.
     private ActivityUserChatBinding binding;
     private PreferenceManager preferenceManager;
 
@@ -37,6 +38,8 @@ public class UserChatActivity extends AppCompatActivity implements UserListener 
         binding.imageBack.setOnClickListener(v -> onBackPressed());
     }
 
+    // Request any other users in 'users' table except for the users him/herself and store their info in an User type object.
+    // Then use these info to fill item containers on the screen by setting adapter.
     private void getUsers(){
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -75,6 +78,7 @@ public class UserChatActivity extends AppCompatActivity implements UserListener 
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
+    // Animation of a progress bar killing time when loading.
     private void loading(Boolean isLoading) {
         if(isLoading){
             binding.progressBar.setVisibility(View.VISIBLE);
@@ -83,6 +87,7 @@ public class UserChatActivity extends AppCompatActivity implements UserListener 
         }
     }
 
+    // Set the click listener, enter the chat page with a certain user when clicking.
     @Override
     public void onUserClicked(User user) {
         Intent intent = new Intent(getApplicationContext(), LiveChatActivity.class);

@@ -15,12 +15,15 @@ import java.util.LinkedList;
 
 public class ReviewAdapter extends BaseAdapter {
 
+    // Adapter for the page reviewing a certain post(which includes comments).
     private Context context;
     private LayoutInflater layoutInflater;
 
+    // Use a linked list to store info of every comments.
     private LinkedList<Review> reviews = new LinkedList<>();
     HashMap<Integer,View> location = new HashMap<>();
 
+    // Constructor
     public ReviewAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
@@ -46,6 +49,7 @@ public class ReviewAdapter extends BaseAdapter {
         return position;
     }
 
+    // Get corresponding comments for each View.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
@@ -62,9 +66,9 @@ public class ReviewAdapter extends BaseAdapter {
         return convertView;
     }
 
+    // The class ViewHolder, fill containers with real values.
     static class ViewHolder {
         TextView tvEmail,tvTime,tvContent;
-
         public ViewHolder(View itemView, Review review) {
             tvEmail = itemView.findViewById(R.id.tv_email);
             tvTime = itemView.findViewById(R.id.tv_time);

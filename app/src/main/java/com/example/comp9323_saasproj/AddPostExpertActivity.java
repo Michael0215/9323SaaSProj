@@ -28,6 +28,9 @@ import java.util.Map;
 
 public class AddPostExpertActivity extends AppCompatActivity {
 
+    // The class for experts to post in the category of 'Announcements'.
+    // Thus, experts are not able to select a category. The rest is the same as AddPostActivity.java.
+
     private EditText etTitle,etDescription;
     private TextView etEmail, etType;
     private Button btnPublish;

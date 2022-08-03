@@ -14,15 +14,17 @@ import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
+    // Adapter for the displaying E-mail and type of a user in 'Select user' page.
     private final List<User> users;
-
     private final UserListener userListener;
 
+    // Constructor
     public UsersAdapter(List<User> users, UserListener userListener) {
         this.users = users;
         this.userListener = userListener;
     }
 
+    // Create view for this page.
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,6 +36,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         return new UserViewHolder(itemContainerUserBinding);
     }
 
+    // Set data to fill containers with real values.
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         holder.setUserData(users.get(position));
@@ -44,8 +47,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         return users.size();
     }
 
+    // Extend basic ViewHolder, overwrite setData function to set what we want.
     class UserViewHolder extends RecyclerView.ViewHolder{
-
         ItemContainerUserBinding binding;
 
         UserViewHolder(ItemContainerUserBinding itemContainerUserBinding){

@@ -28,6 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddPostActivity extends AppCompatActivity {
 
+    // The class for inputting the content of a new post and submitting it.
+
+    // Initialize widgets used in onCreate method.
     private EditText etTitle,etDescription;
     private TextView etEmail;
     private Spinner spType;
@@ -39,9 +42,12 @@ public class AddPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+
+        // Connect objects variables with widgets in the .xml file.
         AppCompatImageView btnBack = findViewById(R.id.btn_back);
         etEmail = findViewById(R.id.tv_email);
         firebaseAuth = FirebaseAuth.getInstance();
+        // Get current user from FirebaseAuth database.
         FirebaseUser cur_user = firebaseAuth.getCurrentUser();
         etEmail.setText(cur_user.getEmail());
         btnBack.setOnClickListener(v -> onBackPressed());
@@ -50,6 +56,7 @@ public class AddPostActivity extends AppCompatActivity {
         spType = findViewById(R.id.spn_type);
         btnPublish = findViewById(R.id.btn_publish);
 
+        // Set what happens when publish button is pressed.
         btnPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,17 +65,20 @@ public class AddPostActivity extends AppCompatActivity {
                 if(CheckInput()) {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date date = new Date(System.currentTimeMillis());
+                    // Initialize a new map to store info of this post.
                     Map<String, Object> post = new HashMap<>();
                     post.put("Title", etTitle.getText().toString());
                     post.put("Category", spType.getSelectedItem().toString());
                     post.put("E-mail", cur_user.getEmail());
                     post.put("Description", etDescription.getText().toString());
                     post.put("Time", simpleDateFormat.format(date));
+                    // Push this record of post to Firestore database.
                     firestoreDatabase.collection("posts")
                             .add(post)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
+                                    // Go back to home page.
                                     Toast.makeText(AddPostActivity.this, "Post success!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AddPostActivity.this, MainActivity.class);
                                     startActivity(intent);
@@ -77,6 +87,7 @@ public class AddPostActivity extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+                                    // Go back to home page.
                                     Toast.makeText(AddPostActivity.this, "Error adding document", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -85,6 +96,7 @@ public class AddPostActivity extends AppCompatActivity {
         });
     }
 
+    // Check each row of input. If any one of them is empty, then you cannot publish.
     public boolean CheckInput() {
         String title = etTitle.getText().toString();
         String type = spType.getSelectedItem().toString();

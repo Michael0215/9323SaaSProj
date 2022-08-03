@@ -2,6 +2,8 @@ package com.example.comp9323_saasproj.bean;
 
 public class Post {
 
+    // The class of a post. It has 6 attributes and corresponding set and get functions.
+
     private String id;
     private String title;
     private String category;

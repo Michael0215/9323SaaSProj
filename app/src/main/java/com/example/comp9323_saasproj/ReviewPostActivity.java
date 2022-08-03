@@ -38,14 +38,30 @@ import java.util.Map;
 
 public class ReviewPostActivity extends AppCompatActivity {
 
-    private TextView title, category, email, description;
+    // This activity determines the way you review a post (and comments).
+
+    // Define widgets, linked list, hash map and database objects.
+    private TextView title, category, email, description, blank;
     private ListView lvReview;
     private LinkedList<Review> allReviews = new LinkedList<>();
     private Map<String, Object> comment = new HashMap<>();
     private EditText etComment;
     private FirebaseFirestore firestoreDatabase;
     private FirebaseAuth firebaseAuth;
+    // Use this flag to refresh comments automatically after entering a post.
     int createRefresh = 1;
+
+    // Firestore is an asynchronous database.
+    /*
+    If you try to give a value of a variable inside the API function to a global variable, and then use the global one
+    outside this function, you will probably have a null pointer. Because you haven't actually get this value from the
+    database yet even though the order of codes seems correct.
+     */
+    /*
+    To solve this problem, one way is to define a callback interface. And use it onResponse function inside the API function.
+    As you see, I packaged codes related to requesting database in a function with a parameter of callback.
+    And add callback.onResponse(1); at the end of this function to ensure the request has already been done.
+     */
 
     public void refreshFirebaseComments(FirebaseCallback callback, Bundle b) {
         allReviews.clear();
@@ -60,7 +76,6 @@ public class ReviewPostActivity extends AppCompatActivity {
                                 Review review = new Review();
                                 if (createRefresh == 0){
                                     Toast.makeText(ReviewPostActivity.this, "Refresh Success!", Toast.LENGTH_SHORT).show();
-
                                 }
                                 if (createRefresh == 1){
                                     createRefresh = 0;
@@ -109,6 +124,7 @@ public class ReviewPostActivity extends AppCompatActivity {
                 });
     }
 
+    // Define the interface of callback.
     public interface FirebaseCallback {
         void onResponse(int flag);
     }
@@ -117,16 +133,20 @@ public class ReviewPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_post);
+
+        // Get widget in .xml file.
         title = findViewById(R.id.et_title);
         category = findViewById(R.id.spn_type);
         email = findViewById(R.id.et_email);
         description = findViewById(R.id.et_description);
         description.setMovementMethod(ScrollingMovementMethod.getInstance());
+        blank = findViewById(R.id.tv_no_comments_now);
         firestoreDatabase = FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
         Bundle b = getIntent().getExtras();
 
-        if( b != null) {
+        // Receive info transferred from previous page.
+        if(b != null) {
             title.setText(b.getString("title"));
             description.setText(b.getString("description"));
             category.setText(b.getString("category"));
@@ -135,11 +155,18 @@ public class ReviewPostActivity extends AppCompatActivity {
         AppCompatImageView tvBack  = findViewById(R.id.tv_back);
         tvBack.setOnClickListener(view -> onBackPressed());
 
+        // Clear this list before refreshing and get ready to store a new list of comments.
         allReviews.clear();
         refreshFirebaseComments(new FirebaseCallback(){
             @Override
             public void onResponse(int flag) {
                 ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                // If list is not empty, then set 'NO COMMENTS' text to be invisible.
+                if(allReviews != null && !allReviews.isEmpty()){
+                    blank.setVisibility(View.INVISIBLE);
+                } else {
+                    blank.setVisibility(View.VISIBLE);
+                }
                 adapter.setData(allReviews);
                 lvReview.setAdapter(adapter);
             }
@@ -156,6 +183,7 @@ public class ReviewPostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(CheckInput()) {
+                    // Store values of attributes of a comments in a map.
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     comment.clear();
                     comment.put("postID", b.getString("id"));
@@ -163,16 +191,23 @@ public class ReviewPostActivity extends AppCompatActivity {
                     comment.put("Time", simpleDateFormat.format(date));
                     comment.put("Content", etComment.getText().toString());
                     comment.put("E-mail", firebaseAuth.getCurrentUser().getEmail());
+                    // Submit by using the packaged function with a callback.
                     submitFirebaseComments(new FirebaseCallback(){
                         @Override
                         public void onResponse(int flag) {
                         }
                     }, comment);
+                    // Automatic refresh after submitting.
                     allReviews.clear();
                     refreshFirebaseComments(new FirebaseCallback(){
                         @Override
                         public void onResponse(int flag) {
                             ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                            if(allReviews != null && !allReviews.isEmpty()){
+                                blank.setVisibility(View.INVISIBLE);
+                            } else {
+                                blank.setVisibility(View.VISIBLE);
+                            }
                             adapter.setData(allReviews);
                             lvReview.setAdapter(adapter);
                         }
@@ -180,7 +215,7 @@ public class ReviewPostActivity extends AppCompatActivity {
                 }
             }
         });
-        // Refresh
+        // Manual refresh.
         ImageButton tvRefresh = findViewById(R.id.tv_refresh);
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +225,11 @@ public class ReviewPostActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(int flag) {
                         ReviewAdapter adapter = new ReviewAdapter(getApplicationContext());
+                        if(allReviews != null && !allReviews.isEmpty()){
+                            blank.setVisibility(View.INVISIBLE);
+                        } else {
+                            blank.setVisibility(View.VISIBLE);
+                        }
                         adapter.setData(allReviews);
                         lvReview.setAdapter(adapter);
                     }

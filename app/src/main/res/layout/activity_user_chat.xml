@@ -7,6 +7,8 @@
     android:animateLayoutChanges="true"
     android:background="#1C2E46"
     tools:context=".UserChatActivity">
+    <!--This page displays content related to select users to chat-->
+    <!--Return to chat homepage-->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageBack"
         android:layout_width="30dp"
@@ -39,7 +41,7 @@
         android:background="@drawable/background_content_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageBack">
-
+        <!--Display the available users (all registered users)-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/usersRecyclerView"
             android:layout_width="match_parent"

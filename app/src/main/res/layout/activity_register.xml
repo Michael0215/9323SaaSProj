@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:clipToPadding="false">
+    <!--This page displays content related to students or staff register  -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
@@ -36,7 +37,7 @@
             android:textColor="@color/primary_text"
             android:textSize="18sp"
             android:textStyle="bold"/>
-
+        <!--Enable students or staff to enter their e-mail account-->
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
@@ -52,6 +53,7 @@
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
             />
+        <!--Enable students or staff to enter their password-->
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
@@ -67,6 +69,7 @@
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
             />
+        <!--Ask students or staff to confirm their password-->
         <EditText
             android:id="@+id/et_confirm_password"
             android:layout_width="match_parent"
@@ -82,6 +85,7 @@
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
             />
+        <!--Enable students or staff to sign up-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
@@ -95,6 +99,7 @@
             app:cornerRadius="8dp"/>
 
     </LinearLayout>
+    <!--If the students or staff already have account, back to login page-->
     <TextView
         android:id="@+id/BackToLogin"
         android:layout_width="match_parent"
@@ -108,6 +113,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+    <!--Return to Select Type page-->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/buttonCancel"
         android:layout_width="30dp"

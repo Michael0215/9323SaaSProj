@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:clipToPadding="false">
-
+    <!--This page displays the content related to the registered user type-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:textSize="40sp"
             android:textStyle="bold"/>
 
-
+        <!--Register common users (students or staff)-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/studentstaff"
             android:layout_width="match_parent"
@@ -37,6 +37,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:cornerRadius="8dp"/>
+        <!--Register expert -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/expert"
             android:layout_width="match_parent"
@@ -49,7 +50,7 @@
             android:textStyle="bold"
             app:cornerRadius="8dp"/>
     </LinearLayout>
-
+    <!--If users already have account, back to login page-->
     <TextView
         android:id="@+id/Cancel"
         android:layout_width="match_parent"

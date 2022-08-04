@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--This page displays content related to personal account information-->
     <TextView
         android:id="@+id/tv_personal_center"
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:text="Account"
         android:textColor="@color/white"
         android:textSize="30sp"/>
-
+<!--Allow users to upload photos as avatars(not yet implemented)-->
     <ImageView
         android:id="@+id/iv_user_photo"
         android:layout_width="80dp"
@@ -33,7 +34,6 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:textStyle="italic"/>
-
     <ImageView
         android:id="@+id/iv_user_info"
         android:layout_width="50dp"
@@ -44,7 +44,7 @@
         android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/personal_information" />
-
+    <!--Enable user to edit their profile(not yet implemented)-->
     <Button
         android:id="@+id/btn_user_info"
         android:layout_width="290dp"
@@ -66,7 +66,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/my_post" />
-
+    <!--Enable user to view their posts(not yet implemented)-->
     <Button
         android:id="@+id/btn_my_goods"
         android:layout_width="290dp"
@@ -88,7 +88,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/my_collection" />
-
+    <!--Enable user to view their collection(not yet implemented)-->
     <Button
         android:id="@+id/btn_my_collection"
         android:layout_width="290dp"
@@ -111,7 +111,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/change_password" />
-
+    <!--Enable user to change their password(not yet implemented)-->
     <Button
         android:id="@+id/btn_modify_password"
         android:layout_width="290dp"
@@ -134,7 +134,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/icon" />
-
+    <!--Show the information about the development team(not yet implemented)-->
     <Button
         android:id="@+id/btn_about_app"
         android:layout_width="290dp"
@@ -157,7 +157,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sign_out" />
-
+    <!--Enable user to sign out-->
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="290dp"
@@ -169,16 +169,7 @@
         android:background="@color/brown"
         android:text="sign out"
         android:textSize="20sp" />
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/buttonCancel"-->
-<!--        android:layout_width="33dp"-->
-<!--        android:layout_height="29dp"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:background="#A2D5F2"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/return1" />-->
+    <!--Return to the home page-->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/buttonCancel"
         android:layout_width="30dp"

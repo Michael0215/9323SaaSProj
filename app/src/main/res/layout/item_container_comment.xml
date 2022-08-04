@@ -3,10 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!--This page is used for containing comments-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <!--Display publisher e-mail-->
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
@@ -16,6 +18,7 @@
             android:textSize="20sp"
             android:textStyle="italic"
             android:layout_marginLeft="10dp" />
+        <!--Display publishing time-->
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="match_parent"
@@ -26,6 +29,7 @@
             android:textStyle="italic"
             android:layout_marginLeft="30dp" />
     </LinearLayout>
+    <!--Display the content of comments-->
     <TextView
         android:id="@+id/tv_comment"
         android:layout_width="350dp"

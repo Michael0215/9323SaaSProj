@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!--This page displays content related to HomePage-->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:text="H&amp;S Forum"
         android:textColor="@color/white"
         android:textSize="30sp"/>
-
+    <!--Refresh home page-->
     <ImageButton
         android:id="@+id/tv_refresh"
         android:layout_width="20dp"
@@ -34,7 +34,7 @@
         android:textColor="@color/purple_700"
         android:textSize="18sp"
         android:textStyle="italic" />
-
+    <!--Enable users to do self diagnose by selecting symptoms-->
     <ImageButton
         android:id="@+id/ib_self_diagnosis"
         android:layout_width="60dp"
@@ -45,7 +45,7 @@
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/self_diagnosis" />
-
+    <!--Show the posts related to Prevention-->
     <ImageButton
         android:id="@+id/ib_prevention"
         android:layout_width="60dp"
@@ -56,7 +56,7 @@
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/prevent" />
-
+    <!--Show the posts related to Cure-->
     <ImageButton
         android:id="@+id/ib_cure"
         android:layout_width="60dp"
@@ -67,7 +67,7 @@
         android:background="@color/white"
         android:scaleType="centerCrop"
         android:src="@drawable/cure" />
-
+    <!--Show the posts related to Announcement-->
     <ImageButton
         android:id="@+id/ib_announcements"
         android:layout_width="60dp"
@@ -125,7 +125,7 @@
         android:text="Announcements"
         android:textSize="15sp"
         android:textStyle="bold" />
-
+    <!--Show the posts information-->
     <ListView
         android:id="@+id/lv_all_post"
         android:layout_width="match_parent"
@@ -140,7 +140,7 @@
         android:layout_above="@+id/view2"
         android:background="@color/purple_700"
         android:layout_marginTop="70dp"/>
-
+    <!--Enable users to chat with others-->
     <ImageButton
         android:id="@+id/ib_live_chat"
         android:layout_width="35dp"
@@ -158,7 +158,7 @@
         android:layout_marginStart="130dp"
         android:background="@color/purple_700"
         android:layout_marginLeft="130dp" />
-
+    <!--Enable users to Post-->
     <ImageButton
         android:id="@+id/ib_add_post"
         android:layout_width="35dp"
@@ -178,7 +178,7 @@
         android:layout_above="@+id/view4"
         android:layout_marginStart="188dp"
         android:layout_marginBottom="1dp"
-        android:text="Post"
+        android:text="POST"
         android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold" />
@@ -190,7 +190,7 @@
         android:background="@color/purple_700"
         android:layout_marginStart="270dp"
         android:layout_marginLeft="270dp" />
-
+    <!--Enable users to view their account information-->
     <ImageButton
         android:id="@+id/ib_account"
         android:layout_width="30dp"
@@ -233,7 +233,7 @@
         android:layout_height="2dp"
         android:layout_alignParentBottom="true"
         android:background="@color/green" />
-
+    <!--Enable users to enter the content they want to search-->
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="280dp"
@@ -245,7 +245,7 @@
         android:maxLines="1"
         android:textColor="@color/teal_700"
         android:textSize="16sp" />
-
+    <!--Enable users to search-->
     <Button
         android:id="@+id/search_button"
         android:layout_width="50dp"

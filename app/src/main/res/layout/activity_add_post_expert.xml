@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
+    <!--This page displays content related to expert postings-->
     <TextView
         android:id="@+id/tv_publish_info"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:text="Title"
         android:textSize="22sp" />
-
+    <!--Enable expert to type the title-->
     <EditText
         android:id="@+id/et_title"
         android:layout_width="240dp"
@@ -47,7 +47,7 @@
         android:layout_marginTop="20dp"
         android:text="Category"
         android:textSize="22sp" />
-
+    <!--Posts published by experts will be regarded as announcements-->
     <TextView
         android:id="@+id/spn_type"
         android:layout_width="170dp"
@@ -68,7 +68,7 @@
         android:layout_marginTop="20dp"
         android:text="E-mail"
         android:textSize="22sp" />
-
+    <!--Autofill based on expert's logged in e-mail-->
     <TextView
         android:id="@+id/tv_email"
         android:layout_width="240dp"
@@ -90,7 +90,7 @@
         android:text="Description"
         android:textSize="22sp"
         tools:ignore="RtlCompat" />
-
+    <!--Enable the expert to enter the description-->
     <EditText
         android:id="@+id/et_description"
         android:layout_width="340dp"
@@ -103,7 +103,7 @@
         android:textColor="@color/teal_700"
         android:textSize="20sp"
         tools:ignore="RtlCompat" />
-
+    <!--Enable experts to post their announcement-->
     <Button
         android:id="@+id/btn_publish"
         android:layout_width="150dp"
@@ -114,9 +114,9 @@
         android:layout_marginEnd="10dp"
         android:backgroundTint="#1C2E46"
         android:text="Post"
-        android:textStyle="bold"
-        android:textSize="25sp" />
-
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <!--Return to the home page-->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btn_back"
         android:layout_width="30dp"
